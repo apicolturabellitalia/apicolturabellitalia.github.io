@@ -1,34 +1,213 @@
 <!DOCTYPE html>
+<html lang="en">
+<!-- cambiati i testi dove necessario
+     messe le immagini nella cartella img
+-->
 <head>
-     <title> home page</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Agriturismo Conserva Bene</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
-<body bgcolor="#00ffff" link="blue" vlink="purple">
-     <!-- logo dell'agriturismo centrato nella pagina --!>
-     <p align=center>
-     <table>
-        <tr>
-            <td><img src="img/agriturismo.jpg"  width="200" height="150" align="middle"></td>
-            <td align="center"> <h1><font color=blue> Agriturismo <br>Conserva Bene</font></h></td>
-        </tr>
-     </table><br><br><br>
-     </p>
-     <!-- tabella che contiene i link alle pagine seguenti --!>
-     <table>
-        <!-- prima riga: collegamento alla pagina che mostra una breve storia dell'azienda --!>
-         <tr>
-             <td> <img src="img/casa.jpeg"  width="60" height="60"></td>
-             <td><a href="chisiamo.html">Chi siamo</a></td>
-        </tr>
-      <!-- seconda riga: collegamento alla pagina dei prodotti --!>
-        <tr>
-           <td><img src="img/images.jpeg"  width="60" height="60"></td>
-           <td><a href="prodotti.html">Clicca per visionare i nostri prodotti</a></td>
-       </tr>
-      <!-- terza riga: collegamento alla pagina che mostra i contatti --!>
-       <tr>  
-         <td> <img src="img/contatti.jpeg" width="60" height="60"></td>
-         <td><a href="contatti.html">Clicca per scoprire come contattarci</a></td>
-       </tr>
-    </table>
-</body>
+<body>
+
+  <!-- Barra di navigazione cambiata con la fixed di Materialize:
+       colore teal
+       invece di Logo Home con href #
+       modificata la lista con 2 elementi: Chi siamo Prodotti
+       modificati i link alle id in pagina
+  -->
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper teal">
+        <a href="#" class="brand-logo">Home</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#ChiSiamo">Chi siamo</a></li>
+          <li><a href="#Prodotti">Prodotti</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Banner principale
+       colorata la riga in nero sfumatura lighten-2 (un grigio scuro?)
+  -->
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <h1 class="header center teal-text text-lighten-2">Agriturismo<br>Conserva Bene</h1>
+        <div class="row center">
+          <h5 class="header col s12 light black-text text-lighten-2">dal 1996 a Frassinoro (MO)</h5>
+        </div>
+        <div class="row center">
+          <a href="#Contattaci" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Contattaci</a>
+        </div>
+        <br><br>
+
+      </div>
+    </div>
+    <div class="parallax"><img src="img/background1.jpg" alt="Unsplashed background img 1"></div>
+  </div>
+
+  <!-- Aggiunta l'id Prodotti alla classe container per poter arrivare qui -->
+  <div id="Prodotti" class="container">
+    <div class="section">
+      <!-- Aggiunta la classe distanzia-prodotti per costruire un margine alla zona dei prodotti
+           Indento tutto sotto questa classe
+      -->
+      <div class="distanzia-prodotti">
+
+        <!-- Icon Section
+             Rimpiccioliti da m4 ad m3
+             Aggiunta una colonna
+             No icone ma thumbnails
+        -->
+        <div class="row">
+          <div class="col s12 m3">
+            <div class="icon-block">
+              <!-- <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2> -->
+              <img src="img/aceto.jpg" alt="Aceto" eight="96" width="128"> 
+              <h5 class="center">Aceto balsamico</h5>
+  
+              <p class="light">Uno dei nostri fiori all'occhiello &egrave; la produzione di aceto balsamico, prodotto tipico della nostra terra.</p>
+              <p class="light teal-text text-lighten-2">&Egrave; imbottigliato dopo un invecchiamento di 12 anni oppure 24 e 40 anni a seconda della necessit&agrave;.</p>
+            </div>
+          </div>
+  
+          <div class="col s12 m3">
+            <div class="icon-block">
+              <!-- <h2 class="center brown-text"><i class="material-icons">group</i></h2> -->
+              <img src="img/mamelate.jpeg" alt="Marmellate" eight="96" width="128"> 
+              <h5 class="center">Marmellate<br><br></h5>
+  
+              <p class="light">Sono prodotte con frutta coltivata senza Ogm.</p>
+              <p class="light teal-text text-lighten-2">Fra le specialit&agrave; segnaliamo la marmellata di arance in produzione tutto l'anno e la marmellta di duroni in produzione durante la stagione estiva.</p>
+            </div>
+          </div>
+  
+          <div class="col s12 m3">
+            <div class="icon-block">
+              <!-- <h2 class="center brown-text"><i class="material-icons">settings</i></h2> -->
+              <img src="img/miele.jpeg" alt="Miele" eight="96" width="128"> 
+              <h5 class="center"><br>Miele</h5>
+  
+              <p class="light">La produzione di miele comprende diverse tipologie: acacia, millefiori, castagno e miele aromatizzato all'arancia sempre disponibile anche su ordinazione.</p>
+              <p class="light teal-text text-lighten-2">Vengono confezionati barattoli da 250 g, 500 g e anche 1 kg.</p>
+            </div>
+          </div>
+  
+          <!-- Questa è la colonna aggiunta -->
+          <div class="col s12 m3">
+            <div class="icon-block">
+              <img src="img/muffin.jpeg" alt="Dolci" eight="96" width="128"> 
+              <h5 class="center">Dolci<br><br></h5>
+  
+              <p class="light">Negli ultimi anni la qualit&agrave; dei nostri prodotti attestata dalla clientala ci ha indotto a inserire nella produzione dolci fatti in casa.</p>
+              <p class="light teal-text text-lighten-2">Sono prodotti su ordinazione da negozi e supermercati della provincia, ma anche dell'intera regione.</p>
+            </div>
+          </div>
+  
+        </div>
+
+      <!-- Chiudo la classe distanzia-prodotti -->
+      </div>
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+         <!-- Colorata la riga in nero sfumatura lighten-2 (un grigio scuro?) -->
+          <h5 class="header col s12 light black-text text-lighten-2">Agriturismo Conserva Bene dal 1996 a Frassinoro (MO)</h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="img/background2.jpg" alt="Unsplashed background img 2"></div>
+  </div>
+
+  <!-- Aggiunta l'id ChiSiamo alla classe container per poter arrivare qui -->
+  <div id="ChiSiamo" class="container">
+    <div class="section">
+      <!-- Aggiunta la classe distanzia-prodotti per costruire un margine alla zona dei prodotti
+           Indento tutto sotto questa classe
+      -->
+      <div class="distanzia-chisiamo">
+
+        <div class="row">
+          <div class="col s12 center">
+            <h3><i class="mdi-content-send brown-text"></i></h3>
+            <h4>Chi siamo</h4>
+            <p class="left-align light">L'agriturismo Conserva Bene nasce nel 1996 a Frassinoro, un piccolo paese dell'Appenino Tosco Emiliano in provincia di Modena.</p>
+            <p class="left-align light">La caratteristica della nostra azienda &egrave; la ricerca della qualit&agrave; e della genuinit&agrave; dei prodotti che vengono coltivati e confezionati con estrema attenzione al processo produttivo e all'utilizzazione di materie prime di qualit&agrave;.</p>
+            <p class="left-align light">L'azienda &egrave; a conduzione familiare, in essa lavorano il proprietario sig. Gibellini Francesco e la moglie Rossana che hanno creato la fattoria partendo dalla prioduzione di marmellate e vino ad uso personale, successivamente la crescente richiesta sul territorio di prodotti agricoli di qualit&agrave; ha spinto la famiglia a diffondere la loro produzione dapprima nei paesi circostanti e successivamente verso la citt&agrave dove hanno riscosso crescente successo tra i consumatori.</p>
+            <p class="left-align light">Oggi nell'azienda lavorano anche i figli Marco e Matteo.</p>
+          </div>
+        </div>
+
+      <!-- Chiudo la classe distanzia-prodotti -->
+      </div>
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <!-- Colorata la riga in nero sfumatura lighten-2 (un grigio scuro?) -->
+          <h5 class="header col s12 light black-text text-lighten-2">Agriturismo Conserva Bene dal 1996 a Frassinoro (MO)</h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="img/background3.jpg" alt="Unsplashed background img 3"></div>
+  </div>
+
+  <!-- Aggiunta l'id Contattaci alla classe container per poter arrivare qui -->
+  <footer id="Contattaci" class="page-footer teal">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Agriturismo Conserva Bene</h5>
+          <p class="grey-text text-lighten-4">Per qualunque informazione vi preghiamo di contattarci.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Contatti</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Agriturismo<br>Conserva Bene<br>Viale dei cipressi 345/3<br>Frassinoro (MO)</a></li>
+            <li><a class="white-text" href="#!">tel. 0536 555667</a></li>
+            <li><a class="white-text" href="#!">fax 0536 555998</a></li>
+            <li><a class="white-text" href="#!"><br>e-mail agriturismo.conserva.bene@alice.it</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Localizzazione</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Cercateci su<br><a href="https://www.google.com/maps">google maps</a></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  </body>
 </html>
