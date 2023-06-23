@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+ <meta name="viewport" content="width=device-width, initial-scale=1"/>
+ <title>Apicoltura bell'Italia</title>
+ <!-- CSS -->
+ <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+ <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+
+ <div style="caret-color:transparent" id="modal1" class="modal bottom-sheet unselectable">
+  <div class="modal-header">
+   <p class="flow-text light center"><em>Bella l&igrave;, ma qual'&egrave; la cookie policy di questo sito?</em></p>
+  </div>
+  <div class="modal-body">
+   <p class="flow-text light center"><em>Questo sito non usa cookie!</em></p>
+  </div>
+  <div class="modal-footer">
+   <i class="modal-close btn-small waves-effect waves-light teal lighten-1" (click)="closeModal()"><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</em></i>
+  </div>
+ </div>
+
+ <div style="caret-color:transparent" class="navbar-fixed unselectable">
+  <nav>
+   <div class="nav-wrapper teal">
+    <a href="#" style="position:absolute;left:0px;color:#be5504" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <a href="#" class="brand-logo">Home</a>
+    <ul class="right hide-on-med-and-down">
+     <li><a href="#ChiSiamo">Chi sono</a></li>
+     <li><a href="#Prodotti">Miele</a></li>
+    </ul>
+   </div>
+  </nav>
+ </div>
+ <ul class="sidenav sidenav-close teal unselectable" id="mobile-demo" style="caret-color:transparent;width:120px;height:360px">
+  <li>
+   <div class="user-view">
+    <div class="background">
+     <img src="img/alveare_con_apina.png">
+    </div>
+    <img class="circle" src="img/apina.svg" width="100" height="80">
+   </div>
+  </li>
+  <li><div class="divider"></div></li>
+  <li><a href="#Contattaci">Contattami</a></li>
+  <li><div class="divider"></div></li>
+  <li><a href="#ChiSiamo">Chi sono</a></li>
+  <li><div class="divider"></div></li>
+  <li><a href="#Prodotti">Miele</a></li>
+  <li><div class="divider"></div></li>
+ </ul>
+
+ <div style="caret-color:transparent" id="index-banner" class="parallax-container unselectable">
+  <div class="section no-pad-bot">
+   <div class="container">
+    <div class="row center">
+<h1 style="text-align:center; font-family:Bakery; font-size:72pt; color:#be5504"><b>Apicoltura bell<svg version="1.0" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="18pt" height="72pt" viewBox="0 0 100 400" preserveAspectRatio="xMidYMid meet">
+<g transform="translate(-18 180) scale(0.05 -0.05) rotate(-45)" fill="#be5504" stroke="none">
+<path d="M882 1584 c-27 -19 -28 -45 -2 -69 13 -12 27 -15 46 -11 25 7 74 -14 74 -32 0 -4 -16 -16 -36 -27 -48 -25 -85 -75 -99 -133 l-12 -46 -74 -2 c-97 -2 -172 -24 -249 -75 -150 -101 -249 -309 -250 -526 l0 -91 48 -6 c61 -9 213 8 277 29 28 10 75 30 106 46 l57 28 17 -46 c23 -61 67 -108 146 -159 75 -48
+112 -91 139 -161 l18 -48 16 39 c9 21 16 41 16 45 0 23 61 87 115 122 78 49 127 102 150 161 l17 46 81 -38 c104 -48 162 -60 296 -60 107 0 109 1 115 24 13 54 -17 242 -54 336 -27 68 -80 150 -130 200 -89 89 -190 131 -319 134 l-74 1 -12 47 c-14 58 -51 108 -99 133 -20 11 -36 23 -36 27 0 18 51 40 76 34 30
+-8 64 16 64 45 0 16 -34 49 -51 49 -7 0 -36 -23 -109 -87 -23 -20 -48 -33 -65 -33 -17 0 -42 13 -65 33 -73 64 -102 87 -109 87 -4 0 -17 -7 -29 -16z m-14 -395 c26 -7 51 -15 55 -19 25 -22 -266 -177 -367 -195 -103 -20 -111 59 -14 138 53 42 80 57 138 73 58 16 129 17 188 3z m686 -28 c68 -33 146 -108 146
+-140 0 -36 -29 -54 -76 -47 -77 10 -336 136 -373 180 -11 13 -9 17 10 25 48 18 66 20 147 17 69 -3 94 -9 146 -35z m-558 -46 c8 -19 -52 -145 -104 -222 -22 -32 -64 -81 -93 -109 -60 -56 -174 -117 -210 -112 -21 3 -23 7 -20 47 8 118 81 213 248 325 126 84 168 101 179 71z m355 -70 c94 -62 139 -99 168 -138
+49 -65 78 -130 82 -188 4 -40 2 -44 -20 -47 -35 -5 -143 52 -207 110 -60 55 -115 130 -159 218 -80 158 -51 168 136 45z m-233 8 c12 -28 22 -56 22 -62 0 -7 -23 -11 -55 -11 -30 0 -55 4 -55 9 0 5 7 26 16 47 9 22 21 50 26 63 11 29 18 22 46 -46z m-522 -127 c3 -7 -6 -42 -20 -77 -15 -34 -31 -91 -37 -125 -6
+-35 -17 -68 -24 -74 -14 -12 -162 -30 -170 -21 -14 13 10 175 35 248 15 42 56 58 168 62 28 0 44 -4 48 -13z m1160 -8 c26 -12 60 -118 70 -222 l7 -69 -81 5 c-44 3 -87 10 -95 16 -8 7 -17 34 -20 62 -3 27 -20 84 -37 126 -17 43 -28 84 -25 92 4 12 20 13 82 7 42 -4 86 -12 99 -17z m-532 -68 c32 -45 34 -51 19 -58
+-22 -9 -319 -9 -328 0 -3 3 10 29 30 57 l37 51 103 0 103 0 36 -50z m96 -148 c0 -16 -13 -47 -29 -69 -67 -93 -259 -120 -363 -50 -40 28 -78 82 -78 114 0 22 2 23 43 16 63 -12 348 -8 377 5 40 17 50 14 50 -16z"/>
+</g></svg>Italia</b></h1> 
+     <h5 style="color:#be5504" class="header col s12"><b><em>Montebello della Battaglia (PV)</em></b><br><br></h5>          
+     <a href="#Contattaci" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Contattami</a>
+    </div>
+   </div>
+  </div>
+  <div class="parallax"><img src="img/Etichetta_sfondo.jpeg" alt="Sfondo"></div>
+ </div>
+
+ <div style="caret-color:transparent" id="Prodotti" class="container unselectable">
+  <div class="section">
+   <div class="distanzia-prodotti">
+     <div class="col s12 m7">
+      <h2 class="header center">Miele</h2>
+      <div class="card horizontal">
+        <div class="card-image">
+        <img src="img/miele.jpeg" alt="Miele">
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+           <p class="flow-text light">Il miele è un alimento fantastico perch&eacute; ad ogni nuova stagione &egrave; diverso! Faccio il millefiori ma non solo, se la stagione lo permette.</p>
+           <p class="flow-text light teal-text text-lighten-2"><br>Sono disponibili confezioni da 500 g e 1 kg.</p>
+          </div>
+          <div class="card-action">
+           <a href="https://forms.gle/mMoYbxPXBToiqohS6" target="_blank" style="color:#be5504" class="flow-text">Vai qui se vuoi provarlo</a>
+          </div>
+         </div>
+       </div>
+     </div>
+    </div>
+  </div>
+ </div>
+
+ <div class="parallax-container valign-wrapper unselectable"> 
+  <div class="section no-pad-bot">
+   <div class="container">
+    <div class="row center">
+     <h5 style="caret-color:transparent;color:#be5504" class="header col s12"><b><em>Apicoltura bell'Italia a Montebello della Battaglia (PV)</em></b></h5>
+    </div>
+   </div>
+  </div>
+  <div class="parallax"><img src="img/ES1.jpeg" alt="Sfondo"></div>
+ </div>
+
+ <div style="caret-color:transparent" id="ChiSiamo" class="container unselectable">
+  <div class="section">
+   <div class="distanzia-chisiamo">
+    <div class="row">
+     <div class="col s12 center">
+      <h2 class="header center">Chi sono</h2>
+      <p class="flow-text left-align light">Dalle<a href="https://it.wikipedia.org/wiki/Application_programming_interface" target="_blank" style="color:#be5504">&nbsp;api del coding&nbsp;</a>nell'informatica alle api del miele nella natura quant'&egrave; lungo il passo? Nel 2022 ho scelto l'apicoltura e, mettendoci tutta l'attenzione e la cura, spero di fare bene anche in questa attivit&agrave;.</p>
+      <p class="flow-text left-align light">Sono ovviamente un nuovo e piccolo o meglio piccolissimo produttore, ma portato sulle spalle da chi di esperienza ne ha da vendere: i grandi Giovanni e Ivana di Mornico Losana (anche se loro vogliono chiamarsi pensionati!).</p>
+      <p class="flow-text left-align light">Per ora faccio solo miele.</p>
+     </div>
+    </div>
+   </div> 
+  </div>
+ </div>
+
+ <div class="parallax-container valign-wrapper unselectable">
+  <div class="section no-pad-bot">
+   <div class="container">
+    <div class="row center">
+     <h5 style="caret-color:transparent;color:#be5504" class="header col s12"><b><em>Apicoltura bell'Italia a Montebello della Battaglia (PV)</em></b></h5>
+    </div>
+   </div>
+  </div>
+  <div class="parallax"><img src="img/ES2.jpeg" alt="Sfondo"></div>
+ </div>
+
+ <footer style="caret-color:transparent" id="Contattaci" class="page-footer teal unselectable">
+  <div class="container">
+   <div class="row">
+    <div class="col l6 s12">
+     <h5 class="white-text">Contatti</h5>
+     <ul>
+      <li class="white-text">Apicoltura bell'Italia<br>Alberto Massocchi<br>Via per Casteggio 38<br>Montebello della Battaglia (PV)</li>
+      <li class="white-text">tel. <a href="tel:0039038382619" class="brown-text text-lighten-3">+39038382619</a></li>
+      <li class="white-text">cell. <a href="tel:00393356895071" class="brown-text text-lighten-3">+393356895071</a></li>
+      <li class="white-text">email <a href="mailto:alberto.m@ssocchi.com?subject=Apicoltura bell'Italia" target="_blank" class="brown-text text-lighten-3">alberto.m@ssocchi.com</a></li>
+     </ul>
+    </div>
+    <div class="col l6 s12">
+     <h5 class="white-text">Hmmm ... poco social!</h5>
+     <p class="grey-text text-lighten-4">Ma prova a cercarmi su <a href="https://www.linkedin.com/in/albertomassocchi" target="_blank" class="brown-text text-lighten-3">Linkedin</a> ... giuro che aggiorner&ograve; il profilo!</p>
+    </div>
+    <div class="col l6 s12">
+     <h5 class="white-text">Localizzazione</h5>
+     <ul>
+      <li class="white-text">Trovami con <a href="https://goo.gl/maps/K8AseEdgRPDjK9jj9" target="_blank" class="brown-text text-lighten-3">Google Maps</a>, e puoi scoprire il perch&eacute; di bell'Italia</li>
+     </ul>
+    </div>
+   </div>
+  </div>
+  <div class="footer-copyright">
+   <div class="container">
+    Made with <a class="brown-text text-lighten-3" href="https://materializeweb.com" target="_blank">Materialize</a>
+   </div>
+  </div>
+ </footer>
+
+ <!-- Scripts -->
+ <script src="js/jquery-3.6.4.min.js"></script>
+ <script src="js/materialize.js"></script>
+ <script src="js/init.js"></script>
+
+</body>
+</html>
