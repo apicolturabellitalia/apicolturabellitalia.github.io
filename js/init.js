@@ -6,7 +6,7 @@
     //initialize collapsible
     $('.collapsible').collapsible();
     //initialize all modals           
-    $('.modal').modal();
+    $('.modal').modal({dismissible: false});
     //now you can open modal from code
     $('#modal1').modal('open');
     //or by click on trigger
