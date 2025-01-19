@@ -84,17 +84,6 @@ p {
   }
 }
 
-/* distanzia-prodotti ha un margine alto per evitare la sparizione delle icone */
-.distanzia-prodotti {
-  margin-top: 60px;
-}
-
-/* distanzia-chisiamo ha un margine alto per evitare la sparizione del titolo e uno basso */
-.distanzia-chisiamo {
-  margin-top: 60px;
-  margin-bottom: 60px;  
-}
-
 .icon-block {
   padding: 0 15px;
 }
