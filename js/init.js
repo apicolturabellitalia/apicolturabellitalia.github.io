@@ -1,16 +1,32 @@
-(function($){
-  $(function(){
+//initialize sidenav
+document.addEventListener('DOMContentLoaded', function() {
+    const elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems, {});
+});
 
-    $('.sidenav').sidenav();
-    $('.parallax').parallax();
-    //initialize collapsible
-    $('.collapsible').collapsible();
-    //initialize all modals           
-    $('.modal').modal({dismissible: false});
-    //now you can open modal from code
-    $('#modal1').modal('open');
-    //or by click on trigger
-    $('.trigger-modal').modal();
-    
-  }); // end of document ready
-})(jQuery); // end of jQuery name space
+//initialize parallax
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.parallax');
+    var instances = M.Parallax.init(elems, {});
+  });
+
+//initialize collapsible
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.collapsible');
+    var instances = M.Collapsible.init(elems, {});
+  });
+
+//initialize modal
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var options = {};
+    options.dismissible = false;
+    var instances = M.Modal.init(elems, options);
+  });
+
+//show div id cookiepolicy
+document.addEventListener("DOMContentLoaded", function () {
+     const elem = document.getElementById('cookiepolicy');
+     const instance = M.Modal.init(elem, {dismissible: false});
+     instance.open();
+  });
