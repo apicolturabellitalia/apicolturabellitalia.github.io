@@ -19,9 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
 //initialize modal
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.modal');
-    var options = {};
-    options.dismissible = false;
-    var instances = M.Modal.init(elems, options);
+    var instances = M.Modal.init(elems, {});
   });
 
 //show div id cookiepolicy
