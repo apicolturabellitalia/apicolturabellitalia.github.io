@@ -4,6 +4,7 @@
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
  <meta name="viewport" content="width=device-width, initial-scale=1"/>
  <title>Apicoltura bell'Italia</title>
+
  <!-- CSS -->
  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -11,7 +12,6 @@
 
 <body>
  <div style="caret-color:transparent" id="cookiepolicy" class="modal bottom-sheet unselectable">
- <!--<div style="caret-color:transparent" id="modal1" class="modal bottom-sheet unselectable">-->
   <div class="modal-header">
    <p class="flow-text light center"><em>Bella l&igrave;, ma qual'&egrave; la cookie policy di questo sito?</em></p>
   </div>
@@ -26,7 +26,7 @@
  <div style="caret-color:transparent" class="navbar-fixed unselectable">
   <nav>
    <div class="nav-wrapper teal">
-    <a style="position:absolute; left:0px; color:#be5504" data-target="mobile-demo" class="sidenav-trigger" href="#"><i class="material-icons">menu</i></a>
+    <a style="position:absolute; left:0px; color:#be5504" data-target="mobilemenu" class="sidenav-trigger" href="#"><i class="material-icons">menu</i></a>
     <a href="#" class="brand-logo">Home</a>
     <ul class="right hide-on-med-and-down">
      <li><a href="#ChiSiamo">Chi sono</a></li>
@@ -36,7 +36,7 @@
   </nav>
  </div>
 
- <ul style="caret-color:transparent; width:120px; height:360px" class="sidenav sidenav-close teal unselectable" id="mobile-demo">
+ <ul style="caret-color:transparent; width:120px; height:360px" class="sidenav sidenav-close teal unselectable" id="mobilemenu">
   <li>
    <div class="user-view">
     <div class="background">
@@ -45,13 +45,25 @@
     <img class="circle" src="img/apina.svg" width="100" height="80">
    </div>
   </li>
-  <li><div class="divider"></div></li>
-  <li><a href="#Contattaci">Contattami</a></li>
-  <li><div class="divider"></div></li>
-  <li><a href="#ChiSiamo">Chi sono</a></li>
-  <li><div class="divider"></div></li>
-  <li><a href="#Prodotti">Miele</a></li>
-  <li><div class="divider"></div></li>
+  <li>
+   <div class="divider">
+   </div>
+  </li>
+  <li><a href="#Contattaci" class="waves-effect">Contattami</a></li>
+  <li>
+   <div class="divider">
+   </div>
+  </li>
+  <li><a href="#ChiSiamo" class="waves-effect">Chi sono</a></li>
+  <li>
+   <div class="divider">
+   </div>
+  </li>
+  <li><a href="#Prodotti" class="waves-effect">Miele</a></li>
+  <li>
+   <div class="divider">
+   </div>
+  </li>
  </ul>
 
  <div style="caret-color:transparent" id="index-banner" class="parallax-container unselectable">
@@ -64,10 +76,14 @@
     </div>
    </div>
   </div>
-  <div class="parallax"><img src="img/Etichetta_sfondo.jpeg" alt="Sfondo"></div>
+  <div class="parallax">
+   <img src="img/Etichetta_sfondo.jpeg" alt="Sfondo">
+  </div>
  </div>
 
- <div style="caret-color:transparent" class="container unselectable min-height" id="Prodotti"><br><br><br></div>
+ <div style="caret-color:transparent" class="container unselectable min-height" id="Prodotti">
+  <br><br><br>
+ </div>
 
  <div style="caret-color:transparent" class="container unselectable valign-wrapper center-align">
   <div class="card responsive-horizontal hoverable">
@@ -94,12 +110,16 @@
     </div>
    </div>
   </div> 
-  <div class="parallax"><img src="img/ES1.jpeg" alt="Sfondo"></div>
+  <div class="parallax">
+   <img src="img/ES1.jpeg" alt="Sfondo">
+  </div>
  </div>
 
-<div style="caret-color:transparent" class="container unselectable min-height" id="ChiSiamo"><br><br><br></div>
+ <div style="caret-color:transparent" class="container unselectable min-height" id="ChiSiamo">
+  <br><br><br>
+ </div>
 
-<div style="caret-color:transparent" class="container unselectable valign-wrapper center-align">
+ <div style="caret-color:transparent" class="container unselectable valign-wrapper center-align">
   <div class="section">
    <div class="row center">
     <div class="col s12 center">
@@ -120,7 +140,9 @@
     </div>
    </div>
   </div> 
-  <div class="parallax"><img src="img/ES1.jpeg" alt="Sfondo"></div>
+  <div class="parallax">
+   <img src="img/ES1.jpeg" alt="Sfondo">
+  </div>
  </div>
 
  <footer style="caret-color:transparent" id="Contattaci" class="page-footer teal unselectable">
@@ -141,21 +163,18 @@
     </div>
     <div class="col l6 s12">
      <h5 class="white-text">Localizzazione</h5>
-     <ul>
-      <li class="white-text">Trovami con <a href="https://goo.gl/maps/K8AseEdgRPDjK9jj9" target="_blank" class="brown-text text-lighten-3">Google Maps</a>, e puoi scoprire il perch&eacute; di bell'Italia</li>
-     </ul>
+     <p class="white-text">Trovami con <a href="https://goo.gl/maps/K8AseEdgRPDjK9jj9" target="_blank" class="brown-text text-lighten-3">Google Maps</a>, e puoi scoprire il perch&eacute; di bell'Italia</p>
     </div>
    </div>
   </div>
   <div class="footer-copyright">
-   <div class="container white-text">
-    Made&nbsp;with&nbsp;<a href="https://materializeweb.com" target="_blank" class="brown-text text-lighten-3">Materialize</a>
+   <div class="container">
+    <span class="white-text">Made&nbsp;with&nbsp;</span><a href="https://materializeweb.com" target="_blank" class="brown-text text-lighten-3">Materialize</a>
    </div>
   </div>
  </footer>
 
- <!-- Scripts -->
- <script src="js/jquery-3.6.4.min.js"></script>
+ <!-- JS -->
  <script src="js/materialize.js"></script>
  <script src="js/init.js"></script>
 </body>
