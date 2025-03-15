@@ -156,7 +156,8 @@ footer.page-footer {
   position: fixed;
   display: none;
   color: #fff;
-  line-height: 50px;
+  /*line-height: 50px;*/
+  line-height: 1.2;  /* Ridotto l'interlinea per renderlo più compatto */  
   bottom: 0;
   left: 0;
   width: 100%;
