@@ -166,6 +166,7 @@ footer.page-footer {
   height: auto;           /* Rimuove altezza fissa per adattarsi al contenuto */    
   z-index: 1000;
   -webkit-font-smoothing: antialiased;
+  white-space: normal;    /* Permette al testo di andare a capo automaticamente */  
   user-select: none;      /* Disabilita la selezione del testo */
 }
 
