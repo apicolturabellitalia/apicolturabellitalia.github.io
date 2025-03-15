@@ -56,7 +56,7 @@ function splash4province(e) {
     videoelement.id = 'videoscalabile';
     videoelement.className='materialboxed responsive-video scale-transition scale-out';
     videoelement.alt='Zoom sulle quattro province';
-    videoelement.dataset.caption = 'dettaglia del nord, dove sono io';
+    videoelement.dataset.caption = 'Montebello della Battaglia è un po\' a nord ovest';
     var sourceMP4element = document.createElement('source'); 
     sourceMP4element.type = 'video/mp4';
     sourceMP4element.src = 'img/4province.mp4';
@@ -68,7 +68,7 @@ function splash4province(e) {
     linkelement.style="font-size:5vw;"
     linkelement.className = 'indigo-text text-darken-4 Heading h2';
     linkelement.setAttribute('onclick', 'risistemadachiude(event);');
-    linkelement.innerText = 'qui puoi eliminare lo zoom';
+    linkelement.innerText = 'qui puoi chiudere lo zoom';
     //per la sostuituzione crea un contenitore (che occupa tutta la larghezza disponibile e con altezza che dipenderà dal video) con il video e l'hyperlink
     var container = document.createElement('div');
     container.style.position = 'relative';
@@ -106,7 +106,7 @@ function splash4province(e) {
                           );
     //cambia il link
     e.currentTarget.setAttribute('onclick', 'risistema(event);');
-    e.currentTarget.innerHTML = 'qui puoi eliminare lo zoom';
+    e.currentTarget.innerHTML = 'qui puoi chiudere lo zoom';
    }
 
 function risistema(e) {
