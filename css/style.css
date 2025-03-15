@@ -163,7 +163,6 @@ footer.page-footer {
   text-align: center;
   padding: 0% 15%;
   /*height: 50px;*/
-  height: auto;           /* Rimuove altezza fissa per adattarsi al contenuto */    
   z-index: 1000;
   -webkit-font-smoothing: antialiased;
   white-space: normal;    /* Permette al testo di andare a capo automaticamente */  
