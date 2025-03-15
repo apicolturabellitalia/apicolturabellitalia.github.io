@@ -11,7 +11,7 @@ nav .brand-logo {
   color: #444;
 }
 
- /* inserito un padding 0 alto basso e 150 destra e sinistra */
+/* inserito un padding 0 alto basso e 150 destra e sinistra */
 nav .nav-wrapper {
   padding: 0 150px;
 }
@@ -20,8 +20,16 @@ p {
   line-height: 2rem;
 }
 
+/* per la sidenav */
+.sidenav li>a {padding:0 32px !important}
+
 .sidenav-trigger {
   color: #26a69a;
+}
+
+.collapsible-body>ul>li>a {
+  padding: 0 48px !important;
+  font-weight: 400 !important;
 }
 
 .parallax-container {
@@ -132,14 +140,6 @@ footer.page-footer {
   -webkit-font-smoothing: antialiased;
 }
 
-/* per la sidenav */
-.sidenav li>a {padding:0 32px !important}
-
-.collapsible-body>ul>li>a {
-  padding: 0 48px !important;
-  font-weight: 400 !important;
-}
-
 /* unselectable */
 .unselectable {
   -webkit-touch-callout: none; /* iOS Safari */
@@ -149,4 +149,22 @@ footer.page-footer {
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+}
+
+/* caption responsive per materialbox */
+.materialbox-caption {
+  position: fixed;
+  display: none;
+  color: #fff;
+  line-height: 1.4;  /* Modifica line-height per migliorare la leggibilità quando il testo va a capo */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 0 5%;  /* Aggiustato il padding per una larghezza più fluida */
+  z-index: 1000;
+  -webkit-font-smoothing: antialiased;
+  word-wrap: break-word;  /* Assicura che il testo si spezzi quando necessario */
+  white-space: normal;    /* Permette al testo di andare a capo automaticamente */
+  height: auto;           /* Rimuove altezza fissa per adattarsi al contenuto */
 }
