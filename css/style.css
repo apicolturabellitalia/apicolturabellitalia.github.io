@@ -166,8 +166,6 @@ footer.page-footer {
   z-index: 1000;
   -webkit-font-smoothing: antialiased;
   user-select: none;      /* Disabilita la selezione del testo */
-  word-wrap: break-word;  /* Assicura che il testo si spezzi quando necessario */
-  white-space: normal;    /* Permette al testo di andare a capo automaticamente */
 }
 
 /*.materialbox-caption {
