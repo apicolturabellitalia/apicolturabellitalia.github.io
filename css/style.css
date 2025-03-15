@@ -156,17 +156,32 @@ footer.page-footer {
   position: fixed;
   display: none;
   color: #fff;
-  line-height: 1.4;  /* Modifica line-height per migliorare la leggibilità quando il testo va a capo */
-  padding-top: 10%; /* Distanza tra la parte superiore della pagina e il caption */
-  top: 0;             /* Posiziona il caption in cima alla pagina */
+  line-height: 50px;
+  bottom: 0;
   left: 0;
   width: 100%;
   text-align: center;
-  padding: 0 5%;  /* Aggiustato il padding per una larghezza più fluida */
+  padding: 0% 15%;
+  height: 50px;
   z-index: 1000;
   -webkit-font-smoothing: antialiased;
-  word-wrap: break-word;  /* Assicura che il testo si spezzi quando necessario */
-  white-space: normal;    /* Permette al testo di andare a capo automaticamente */
-  height: auto;           /* Rimuove altezza fissa per adattarsi al contenuto */
-  user-select: none;      /* Disabilita la selezione del testo */  
 }
+
+/*.materialbox-caption {
+  position: fixed;
+  display: none;
+  color: #fff;
+  line-height: 1.4;  /* Modifica line-height per migliorare la leggibilità quando il testo va a capo */
+/*  padding-top: 10%; /* Distanza tra la parte superiore della pagina e il caption */
+/*  top: 0;             /* Posiziona il caption in cima alla pagina */
+/*  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 0 5%;  /* Aggiustato il padding per una larghezza più fluida */
+/*  z-index: 1000;
+  -webkit-font-smoothing: antialiased;
+  word-wrap: break-word;  /* Assicura che il testo si spezzi quando necessario */
+/*  white-space: normal;    /* Permette al testo di andare a capo automaticamente */
+/*  height: auto;           /* Rimuove altezza fissa per adattarsi al contenuto */
+/*  user-select: none;      /* Disabilita la selezione del testo */  
+/*}
