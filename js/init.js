@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //show div id cookiepolicy as modal (initialize modal for cookiepolicy)
 document.addEventListener('DOMContentLoaded', function () {
-    const elem = document.getElementById('cookiepolicy');
-    const instances = M.Modal.init(elem, {dismissible: false});
+    const elems = document.getElementById('cookiepolicy');
+    const instances = M.Modal.init(elems, {dismissible: false});
     instances.open();
   });
 
@@ -61,28 +61,14 @@ function splash4province(e) {
     sourceMP4element.type = 'video/mp4';
     sourceMP4element.src = 'img/4province.mp4';
     videoelement.appendChild(sourceMP4element);
-    //crea l'hyperlink di chiusura
+    //crea l'hyperlink di chiusura non visibile e posizionato al centro del blocco
     var linkelement = document.createElement('a');
     linkelement.id = 'chiude';
     linkelement.href = '#!';
-    linkelement.style="font-size:5vw;"
+    linkelement.style='font-size:5vw;';
     linkelement.className = 'indigo-text text-darken-4 Heading h2';
-    linkelement.setAttribute('onclick', 'risistemadachiude(event);');
+    linkelement.setAttribute('onclick', 'risistema(event);');
     linkelement.innerText = 'qui puoi chiudere lo zoom';
-    //per la sostuituzione crea un contenitore (che occupa tutta la larghezza disponibile e con altezza che dipenderà dal video) con il video e l'hyperlink
-    var container = document.createElement('div');
-    container.style.position = 'relative';
-    container.style.display = 'inline-block';
-    container.style.width = '100%'; 
-    container.style.height = 'auto';
-    container.appendChild(videoelement);
-    container.appendChild(linkelement);
-    //sostituisce il contenuto della colonna
-    var divelement = document.getElementById('colonna1');
-    divelement.replaceChildren(container);
-    //ingrandisce ed avvia il video
-    videoelement.classList.replace('scale-out','scale-in');
-    //posizione l'hyperink sopra il video
     linkelement.style.position = 'absolute';
     linkelement.style.top = '50%'; 
     linkelement.style.left = '50%';
@@ -91,22 +77,61 @@ function splash4province(e) {
     linkelement.style.textAlign = 'center'; 
     linkelement.style.display = 'none';
     linkelement.style.zIndex = '10'; 
-    videoelement.play();
-    //a fine video lo attiva per javascript e mostra il link
-    videoelement.addEventListener('ended', function() {
-                                                       linkelement.style.display = 'block';
-                                                       M.Materialbox.init(videoelement);
-                                                      }
+    //crea un contenitore (che occupa tutta la larghezza disponibile e con altezza che dipenderà dal video) con il video e l'hyperlink
+    var container = document.createElement('div');
+    container.style.position = 'relative';
+    container.style.display = 'inline-block';
+    container.style.width = '100%'; 
+    container.style.height = 'auto';
+    container.appendChild(videoelement);
+    container.appendChild(linkelement);
+    //sostituisce il contenuto della colonna col nuovo contenitore
+    var divelement = document.getElementById('colonna1');
+    divelement.replaceChildren(container);
+    //il video ha 98 frame, la proiezione si deve fermare a metà (49)
+    const videotargetframe = 49; 
+    const videofps = 30;
+    //questo è il tempo assoluto in secondi a cui il video si deve fermare (circa 1.6333)
+    const videostoptime = videotargetframe / videofps;
+
+    //funzione handler per l'evento timeupdate
+    function checkVideoTime() {
+        // Controlla se il tempo corrente ha superato o raggiunto il target
+        if (videoelement.currentTime >= videostoptime) {
+           videoelement.pause();
+           //per sicurezza: aggiunge precisione
+           videoelement.currentTime = videostoptime;
+           //mostra l'hyperlink
+           linkelement.style.display = 'block';
+           //inizializza l'elemento per il materialbox
+           M.Materialbox.init(videoelement);
+           //cambia il testo sistema l'hyperlink da cui è partito per poter tornere indietro
+           rimpiazzaTestoConLinks(document.getElementById('quattroprovince'),
+                                  {', o ': ' (mentre ',
+                                   '.': ').'           
+                                  }
                                  );
-    //cambia il testo
-    rimpiazzaTestoConLinks(document.getElementById('quattroprovince'),
-                           {', o ': ' (mentre ',
-                            '.': ').'           
-                           }
-                          );
-    //cambia il link
-    e.currentTarget.setAttribute('onclick', 'risistema(event);');
-    e.currentTarget.innerHTML = 'qui puoi chiudere lo zoom';
+           //sistema l'hyperlink da cui è partito per poter tornere indietro (e.currentTarget non va bene perché suiamo dentro timeupdate)
+           var thislinkelement = document.getElementById('splash');
+           thislinkelement.setAttribute('onclick', 'risistema(event);');
+           thislinkelement.innerHTML = 'qui puoi chiudere lo zoom';
+           //rimuovi l'event listener per non eseguirlo più
+           videoelement.removeEventListener('timeupdate', checkVideoTime);
+          }
+       }
+
+    //imposta la velocità di riproduzione del video
+    videoelement.playbackRate = 0.75;
+    //aggiunge l'event listener per il video
+    videoelement.addEventListener('timeupdate', checkVideoTime);
+    //carica e avvia il video
+    videoelement.load();
+    videoelement.play().then(() => {
+                                    //avvia l'animazione di scaling durante la riproduzione e poi sposta la finestra di conseguenza
+                                    videoelement.classList.replace('scale-out', 'scale-in');
+                                    document.getElementById('Trovaci').scrollIntoView({behavior: 'smooth'});
+                                   }
+                            );     
    }
 
 function risistema(e) {
@@ -121,82 +146,30 @@ function risistema(e) {
                              <li class="white-text">email <a href="mailto:alberto.massocchi@gmail.com?subject=Apicoltura bell\'Italia" target="_blank" class="brown-text text-lighten-3">alberto.massocchi@gmail.com</a></li>
                            </ul>
                            `;                                                        
-    //riduce al minimo il video
-    var videoelement = document.getElementById('videoscalabile');
-    //sostituisce la sorgente con l'inversa
-    var sourceMP4element = videoelement.querySelector('source');
-    sourceMP4element.remove();
-    sourceMP4element = document.createElement('source'); 
-    sourceMP4element.type = 'video/mp4';
-    sourceMP4element.src = 'img/4provincealla-1.mp4';
-    videoelement.appendChild(sourceMP4element);
     //toglie l'hyperlink da sopra il video
     document.getElementById('chiude').remove();
-    //avvia il video
-    videoelement.load(); 
-    videoelement.addEventListener('loadeddata', function() {videoelement.play();});
-    //lo restringe e lo sostituisce nella colonna di sinistra
-    videoelement.addEventListener("ended",
-                                  function() {videoelement.classList.replace('scale-in','scale-out');
-                                              var divelement = document.getElementById('colonna1');
-                                              divelement.replaceChildren(htmlelement);
-                                             },
-                                   true
-                                  );
-    //rimette a posto il testo
-    rimpiazzaTestoConLinks(document.getElementById('quattroprovince'),
-                           {' (mentre ': ', o ',
-                            ').': '.'                           
-                           }
-                          );
-    //rimette a posto il link
-    e.currentTarget.setAttribute('onclick', 'splash4province(event);');
-    e.currentTarget.innerHTML = 'apri un veloce zoom sulle quattro province';
-   }
-   
-function risistemadachiude(e) {
-    //ricrea l'elemento HTML di contatto, inverte il video, gli toglie l'hyperlink da sopra, esegue il video invertito e lo sostituisce alla colonna di sinistra, rimette a posto il testo, rimette a posto il link
-    //ricrea l'elemento HTML di contatto che era andato distrutto
-    var htmlelement = document.createElement('div');    
-    htmlelement.innerHTML+=`<h5 class="white-text">Contatti</h5>
-                            <ul>
-                             <li class="white-text">Apicoltura bell\'Italia<br>Alberto Massocchi<br>Via per Casteggio 38<br>Montebello della Battaglia (PV)</li>
-                             <li class="white-text">tel. <a href="tel:0039038382619" class="brown-text text-lighten-3">+39038382619</a></li>
-                             <li class="white-text">cell. <a href="tel:00393356895071" class="brown-text text-lighten-3">+393356895071</a></li>
-                             <li class="white-text">email <a href="mailto:alberto.massocchi@gmail.com?subject=Apicoltura bell\'Italia" target="_blank" class="brown-text text-lighten-3">alberto.massocchi@gmail.com</a></li>
-                           </ul>
-                           `;                                                        
-    //riduce al minimo il video
+    //avvia il video dal punto in cui si era fermato mpostandone la veleocità di riproduzione
     var videoelement = document.getElementById('videoscalabile');
-    //sostituisce la sorgente con l'inversa
-    var sourceMP4element = videoelement.querySelector('source');
-    sourceMP4element.remove();
-    sourceMP4element = document.createElement('source'); 
-    sourceMP4element.type = 'video/mp4';
-    sourceMP4element.src = 'img/4provincealla-1.mp4';
-    videoelement.appendChild(sourceMP4element);
-    //toglie l'hyperlink da sopra il video
-    e.currentTarget.remove();
-    //l'avvia
-    videoelement.load(); 
-    videoelement.addEventListener('loadeddata', function() {videoelement.play();});
-    //lo restringe e lo sostituisce nella colonna di sinistra
-    videoelement.addEventListener("ended",
+    videoelement.playbackRate = 1;
+    //alla fine lo deve restringere e sostituirlo nella colonna di sinistra
+    videoelement.addEventListener('ended',
                                   function() {videoelement.classList.replace('scale-in','scale-out');
-                                              var divelement = document.getElementById('colonna1');
-                                              divelement.replaceChildren(htmlelement);
+                                              //risistema l'elemento HTML di contatto
+                                              document.getElementById('colonna1').replaceChildren(htmlelement);
+                                              //rimette a posto il testo e sistema l'hyperlink da cui è partito per poter ricominciare
+                                              rimpiazzaTestoConLinks(document.getElementById('quattroprovince'),
+                                                                     {' (mentre ': ', o ',
+                                                                      ').': '.'                           
+                                                                     }
+                                                                    );
+                                              //sistema l'hyperlink da cui è partito per poter ricominciare (e.currentTarget non va bene perché suiamo dentro ended)
+                                              var thislinkelement = document.getElementById('splash');
+                                              thislinkelement.setAttribute('onclick', 'splash4province(event);');
+                                              thislinkelement.innerHTML = 'apri un veloce zoom sulle quattro province';
+                                              //rimuovi l'event listener per non eseguirlo più
+                                              videoelement.removeEventListener('ended');                                              
                                              },
-                                   true
-                                  );
-    //rimette a posto il testo
-    rimpiazzaTestoConLinks(document.getElementById('quattroprovince'),
-                           {' (mentre ': ', o ',
-                            ').': '.'                           
-                           }
-                          );
-    //rimette a posto il link
-    var linkelement = document.getElementById('splash');
-    linkelement.setAttribute('onclick', 'splash4province(event);');
-    linkelement.innerHTML = 'apri un veloce zoom sulle quattro province';
-   }   
-   
+                                  {capture: true, once: true}
+                                 );
+    videoelement.play();
+   }
