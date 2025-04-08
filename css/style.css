@@ -100,8 +100,12 @@ p {
   font-size: inherit;
 }
 
-footer.page-footer {
+footer .page-footer {
   margin: 0;
+}
+
+footer .footer-copyright .container {
+  padding: 10px 0;
 }
 
 /* il font del logo */
@@ -169,7 +173,6 @@ footer.page-footer {
   white-space: normal;    /* Permette al testo di andare a capo automaticamente */  
   user-select: none;      /* Disabilita la selezione del testo */
 }
-
 
 /*Rectangular pulse animation*/
 .rectangular-btn-pulse {
