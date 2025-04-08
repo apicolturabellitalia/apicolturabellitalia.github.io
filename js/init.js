@@ -65,7 +65,7 @@ function splash4province(e) {
     var linkelement = document.createElement('a');
     linkelement.id = 'chiude';
     linkelement.href = '#!';
-    linkelement.style='font-size:5vw;';
+    linkelement.style='font-size:5vw; text-decoration: underline;';
     linkelement.className = 'indigo-text text-darken-4 Heading h2';
     linkelement.setAttribute('onclick', 'risistema(event);');
     linkelement.innerText = 'qui puoi chiudere lo zoom';
