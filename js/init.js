@@ -1,34 +1,44 @@
 //initialize sidenav
 document.addEventListener('DOMContentLoaded', function() {
     const elems = document.querySelectorAll('.sidenav');
-    const instances = M.Sidenav.init(elems, {});
+    const instances = M.Sidenav.init(elems, { //specify options here
+                                            }
+                                    );
 });
 
 //initialize parallax
 document.addEventListener('DOMContentLoaded', function() {
     const elems = document.querySelectorAll('.parallax');
-    const instances = M.Parallax.init(elems, {});
+    const instances = M.Parallax.init(elems, { //specify options here
+                                             }
+                                     );
   });
 
 //initialize collapsible
 document.addEventListener('DOMContentLoaded', function() {
     const elems = document.querySelectorAll('.collapsible');
-    const instances = M.Collapsible.init(elems, {});
+    const instances = M.Collapsible.init(elems, { //specify options here
+                                                }
+                                         );
   });
 
 //show div id cookiepolicy as modal (initialize modal for cookiepolicy)
 document.addEventListener('DOMContentLoaded', function () {
     const elems = document.getElementById('cookiepolicy');
-    const instances = M.Modal.init(elems, {dismissible: false});
+    const instances = M.Modal.init(elems, {dismissible: false
+                                          }
+                                  );
     instances.open();
   });
 
-//initialize materialboxed
- document.addEventListener('DOMContentLoaded', function() {
-    const elems = document.querySelectorAll('.materialboxed');
-    const instances = M.Materialbox.init(elems, { // specify options here
-                                                });
-   });
+//initialize modal except cookiepolicy
+document.addEventListener('DOMContentLoaded', function () {
+    const elems = document.querySelectorAll('.modal:not(#cookiepolicy)');
+    const instances = M.Modal.init(elems, {dismissible: false
+                                          }
+                                  );
+    instances.open();
+  });
 
 //funzione generalizzata per sostituire il testo di un elemento mantenendo i link
 //usa un array di nodi da sostituire esterni ai link (sostituzioni), meglio mettere un elemento dell'array per ogni nodo diverso che si vuole cambiare, senza HTML entity o HTML special character
@@ -66,7 +76,7 @@ function splash4province(e) {
     linkelement.id = 'chiude';
     linkelement.href = '#!';
     linkelement.className = 'indigo-text text-darken-4 Heading h2';
-    linkelement.setAttribute('onclick', 'risistema(event);');
+    linkelement.setAttribute('onclick', 'viasplash4province(event);');
     linkelement.innerText = 'qui puoi chiudere lo zoom';
     linkelement.style='font-size:5vw; text-decoration: underline;';
     linkelement.style.position = 'absolute';
@@ -104,7 +114,9 @@ function splash4province(e) {
            //mostra l'hyperlink
            linkelement.style.display = 'block';
            //inizializza l'elemento per il materialbox
-           M.Materialbox.init(videoelement);
+           M.Materialbox.init(videoelement, { //opzioni specifiche per questo materialbox se necessarie
+                                            }
+                             );
            //cambia il testo sistema l'hyperlink da cui è partito per poter tornere indietro
            rimpiazzaTestoConLinks(document.getElementById('quattroprovince'),
                                   {', o ': ' (mentre ',
@@ -113,7 +125,7 @@ function splash4province(e) {
                                  );
            //sistema l'hyperlink da cui è partito per poter tornere indietro (e.currentTarget non va bene perché suiamo dentro timeupdate)
            var thislinkelement = document.getElementById('splash');
-           thislinkelement.setAttribute('onclick', 'risistema(event);');
+           thislinkelement.setAttribute('onclick', 'viasplash4province(event);');
            thislinkelement.innerHTML = 'qui puoi chiudere lo zoom';
            //rimuovi l'event listener per non eseguirlo più
            videoelement.removeEventListener('timeupdate', checkVideoTime);
@@ -134,7 +146,7 @@ function splash4province(e) {
                             );     
    }
 
-function risistema(e) {
+function viasplash4province(e) {
     //ricrea l'elemento HTML di contatto, inverte il video, gli toglie l'hyperlink da sopra, esegue il video invertito e lo sostituisce alla colonna di sinistra, rimette a posto il testo, rimette a posto il link
     //ricrea l'elemento HTML di contatto che era andato distrutto
     var htmlelement = document.createElement('div');    
@@ -172,4 +184,23 @@ function risistema(e) {
                                   {capture: true, once: true}
                                  );
     videoelement.play();
+   }
+   
+function splashrecensioni(e) {
+    //impedisce il comportamento predefinito del link
+    e.preventDefault();
+    //impedisce la propagazione dell'evento
+    e.stopPropagation();
+    //rendi visibile il div
+    var divelement = document.getElementById("splashrecensioni");
+    divelement.style.display = "block";
+    //trova il carousel dentro il div appena reso visibile e lo inizializza
+    const elem = divelement.querySelector('.carousel');
+    const instance = M.Carousel.init(elem, { //opzioni specifiche per questo carousel se necessarie
+                                           }
+                                    ); 
+   }
+   
+function viasplashrecensioni(e) {
+    document.getElementById("splashrecensioni").style="display:none;";
    }
