@@ -87,13 +87,24 @@
 
  <div style="caret-color:transparent" class="container unselectable valign-wrapper center-align">
   <div class="card responsive-horizontal hoverable">
-   <div class="card-image">
-    <img src="img/miele.jpeg" alt="Miele">
+   <div style="position:relative;" class="card-image">
+    <img style="display:block; width:100%;" src="img/miele.jpeg" alt="Miele">
+    <div id="splashrecensioni" style="display:none;">
+     <img style="display:block; position:absolute; top:0; left:0; width:100%; height:100%;" src="img/testoscelta.svg">
+     <div style="position:absolute; top:0; left:0; width:100%; height:100%; -webkit-transform:scale(0.70) translateY(-80px); -moz-transform:scale(0.70) translateY(-80px); -ms-transform:scale(0.70) translateY(-80px); transform:scale(0.70) translateY(-80px); transform-origin:center; display:flex; align-items:center; justify-content:center;" class="carousel">
+      <a style="height:auto!important;" class="carousel-item red modal-trigger" href="#modal2023"><img style="display:block;" src="img/2023.svg" alt="2023"></a>
+      <a style="height:auto!important;" class="carousel-item green modal-trigger" href="#modal2024"><img style="display:block;" src="img/2024.svg" alt="2024"></a>
+      <a style="height:auto!important;" class="carousel-item blue modal-trigger" href="#modal2025"><img style="display:block;" src="img/2025.svg" alt="2025"></a>
+      <a style="height:auto!important;" class="carousel-item white modal-trigger" href="#modal2026"><img style="display:block;" src="img/2026.svg" alt="2026"></a>
+      <a style="height:auto!important;" class="carousel-item yellow modal-trigger" href="#modal2027"><img style="display:block;" src="img/2027.svg" alt="2027"></a>
+     </div>
+     <a style="position:absolute; bottom:6px; right:6px;" class="btn-floating btn-small waves-effect waves-light teal lighten-1" onclick="viasplashrecensioni(event);"><i class="material-icons">close</i></a>
+    </div>
    </div>
    <div class="card-stacked">
     <span style="color:#be5504" class="card-title flow-text"><strong>Miele</strong></span>
     <div class="card-content">
-     <p class="flow-text light">Il miele è un alimento fantastico perch&eacute; ad ogni nuova stagione &egrave; diverso! Faccio il millefiori ma, se la stagione lo permette, non solo, e sempre in confezioni da 500 g.</p>
+     <p class="flow-text light">Il miele è un alimento fantastico perch&eacute;<a href="#!" style="color:#be5504" onclick="splashrecensioni(event);">&nbsp;<u>ad ogni nuova stagione &egrave; diverso</u></a>! Faccio il millefiori ma, se la stagione lo permette, non solo, e sempre in confezioni da 500 g.</p>
     </div>
     <div class="card-action">
      <a href="https://forms.gle/mMoYbxPXBToiqohS6" target="_blank" class="btn waves-effect waves-light teal lighten-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sono&nbsp;interessato&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
@@ -101,6 +112,73 @@
    </div>
   </div>
  </div>
+
+ <!-- RECENSIONI MODALI A CHIAMATA (I COLORI SONO GIA' OK) --> 
+ <div id="modal2023" style="caret-color:transparent; border-radius:15px; background-color:#009688;" class="modal unselectable">
+  <div class="modal-header center">
+   <h4>NEL 2023:</h4>
+  </div>
+  <div class="modal-content">
+   <blockquote style="border-left:solid #FF0000;">Il colore &egrave; giallo paglierino, presenti radi nuclei addensati quali principio di cristallizzazione. Il profumo &egrave; tenue, floreale, con richiami a fiori bianchi, vaniglia, confetto. Al palato &egrave; fluido e scorrevole, caratterizzato da media acidit&agrave; e freschezza. Il gusto &egrave; poco persistente: sentori di frutta fresca estiva, pesca bianca. La chiusura &egrave; piacevole, con un accenno di succo di frutta al gusto di albicocca.</blockquote>
+   <p>Grazie Vera!</p>
+  </div>
+  <div class="modal-footer">
+   <a href="#!" class="modal-close waves-effect waves-green btn-flat">chiudi</a>
+  </div>
+ </div>
+
+ <div id="modal2024" style="caret-color:transparent; border-radius:15px; background-color:#009688;" class="modal unselectable">
+  <div class="modal-header center">
+   <h4>NEL 2024:</h4>
+  </div>
+  <div class="modal-content">
+   <blockquote style="border-left:solid #00FF00;">Predomina un bel colore bruno e alla luce si accendono riflessi dorati. Il suo profumo &egrave; leggero e non persistente: dell’alveare ritroviamo la cera, mentre volando lontano si avvertono aromi di caff&egrave; e nocciola tostata, all’orizzonte fiori di campo e altre note vegetali. Consistente e liscio, sulla lingua predomina una sensazione oleosa e persiste la sua caratteristica plasticit&agrave;. &Egrave; un miele che non tradisce la vista, solido, equilibrato, privo di difetti, al gusto mediamente persistente. L'acidit&agrave; in principio di assaggio svela aromi leggeri di vegetazione mista che risalgono al retrolfatto. Certamente &egrave; presente il dattero pi&ugrave; che mai esaltato dalla consistenza avvolgente ... come una coccola ... un miele perfetto per ogni stagione, ma speciale per il Natale.</blockquote>
+   <p>Grazie Vera!</p>
+  </div>
+  <div class="modal-footer">
+   <a href="#!" class="modal-close waves-effect waves-green btn-flat">chiudi</a>
+  </div>
+ </div>
+ 
+ <div id="modal2025" style="caret-color:transparent; border-radius:15px; background-color:#009688;" class="modal unselectable">
+  <div class="modal-header center">
+   <h4>NEL 2025:</h4>
+  </div>
+  <div class="modal-content">
+   <blockquote style="border-left:solid #0000FF;">...</blockquote>
+   <p>Eh, questo &egrave; in preparazione ... e spero sia all'altezza!</p>
+  </div>
+  <div class="modal-footer">
+   <a href="#!" class="modal-close waves-effect waves-green btn-flat">chiudi</a>
+  </div>
+ </div>
+
+ <div id="modal2026" style="caret-color:transparent; border-radius:15px; background-color:#009688;" class="modal unselectable">
+  <div class="modal-header center">
+   <h4>NEL 2026:</h4>
+  </div>
+  <div class="modal-content">
+   <blockquote style="border-left:solid #FFFFFF;">...</blockquote>
+   <p>Il futuro, il futuro ...</p>
+  </div>
+  <div class="modal-footer">
+   <a href="#!" class="modal-close waves-effect waves-green btn-flat">chiudi</a>
+  </div>
+ </div>
+
+ <div id="modal2027" style="caret-color:transparent; border-radius:15px; background-color:#009688;" class="modal unselectable">
+  <div class="modal-header center">
+   <h4>NEL 2027:</h4>
+  </div>
+  <div class="modal-content">
+   <blockquote style="border-left:solid #FFFF00;">...</blockquote>
+   <p>Il futuro, il futuro ...</p>
+  </div>
+  <div class="modal-footer">
+   <a href="#!" class="modal-close waves-effect waves-green btn-flat">chiudi</a>
+  </div>
+ </div>
+ <!-- FINE RECENSIONI MODALI A CHIAMATA --> 
 
  <div style="caret-color:transparent" class="parallax-container valign-wrapper unselectable"> 
   <div class="section no-pad-bot">
@@ -165,6 +243,7 @@
     </div>
    </div>
   </div>
+  
   <div class="footer-copyright">
    <div class="container">
     <span class="white-text">Made&nbsp;with&nbsp;</span><a href="https://materializeweb.com" target="_blank" class="brown-text text-lighten-3">Materialize</a>
