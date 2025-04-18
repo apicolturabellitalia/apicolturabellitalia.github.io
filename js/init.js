@@ -90,8 +90,25 @@ function splash4province(e) {
     var container = document.createElement('div');
     container.style.position = 'relative';
     container.style.display = 'inline-block';
+    container.style.alignItems = 'center';
+    container.style.justifyContent = "center"; 
     container.style.width = '100%'; 
     container.style.height = 'auto';
+    //nel contenitore mette uno spinner per ingannare il tempo nell'attesa ...
+    container.innerHTML+=`<div id="attendivideoscalabile" style="position: absolute; top: 50%; left: 50%; opacity:1; transition:opacity 0.5s ease; will-change:opacity;" class="preloader-wrapper small active">
+                           <div style="border-color: #1A237E;" class="spinner-layer">
+                            <div class="circle-clipper left">
+                             <div style="border-color: #1A237E;" class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                             <div style="border-color: #1A237E;" class="circle"></div>
+                            </div>
+                            <div style="border-color: #1A237E;" class="circle-clipper right">
+                             <div class="circle"></div>
+                            </div>
+                           </div>
+                          </div>
+                         `;                                                        
     container.appendChild(videoelement);
     container.appendChild(linkelement);
     //sostituisce il contenuto della colonna col nuovo contenitore
@@ -103,7 +120,7 @@ function splash4province(e) {
     //questo è il tempo assoluto in secondi a cui il video si deve fermare (circa 1.6333)
     const videostoptime = videotargetframe / videofps;
 
-    //funzione handler per l'evento timeupdate
+    //funzione handler per l'evento timeupdate che controlla la riproduzione
     function checkVideoTime() {
         // Controlla se il tempo corrente ha superato o raggiunto il target
         if (videoelement.currentTime >= videostoptime) {
@@ -131,18 +148,33 @@ function splash4province(e) {
           }
        }
 
+    const spinner = document.getElementById('attendivideoscalabile');
     //imposta la velocità di riproduzione del video
     videoelement.playbackRate = 0.75;
-    //aggiunge l'event listener per il video
-    videoelement.addEventListener('timeupdate', checkVideoTime);
-    //carica e avvia il video
+    //imposta l'event listener per mostrare lo spinner se il video è in buffering
+    videoelement.addEventListener('waiting', () => {
+                                                    spinner.style.opacity = '1';
+                                                   }
+                                 );
+    //imposta l'event Listener per nascondere lo spinner quando il video può partire
+    videoelement.addEventListener('canplaythrough', () => {
+                                                           spinner.style.opacity = '0';
+                                                          }
+                                 );
+    //imposta l'event listener per bloccare il video e avvia la riproduzione controllata solo dopo che i dati sono disponibili
+    videoelement.addEventListener('loadeddata', () => {
+                                                       videoelement.addEventListener('timeupdate', checkVideoTime);
+                                                       //avvia la riproduzione
+                                                       videoelement.play().then(() => {
+                                                                                       //avvia l'animazione di scaling durante la riproduzione e poi sposta la finestra di conseguenza
+                                                                                       videoelement.classList.replace('scale-out', 'scale-in');
+                                                                                       document.getElementById('Trovaci').scrollIntoView({ behavior: 'smooth' });
+                                                                                       }
+                                                                               );
+                                                       }
+                                 );
+    //ora avvia il caricamento
     videoelement.load();
-    videoelement.play().then(() => {
-                                    //avvia l'animazione di scaling durante la riproduzione e poi sposta la finestra di conseguenza
-                                    videoelement.classList.replace('scale-out', 'scale-in');
-                                    document.getElementById('Trovaci').scrollIntoView({behavior: 'smooth'});
-                                   }
-                            );     
    }
 
 function viasplash4province(e) {
@@ -155,7 +187,7 @@ function viasplash4province(e) {
                              <li class="white-text">tel. <a href="tel:0039038382619" class="brown-text text-lighten-3">+39038382619</a></li>
                              <li class="white-text">cell. <a href="tel:00393356895071" class="brown-text text-lighten-3">+393356895071</a></li>
                              <li class="white-text">email <a href="mailto:alberto.massocchi@gmail.com?subject=Apicoltura bell\'Italia" target="_blank" class="brown-text text-lighten-3">alberto.massocchi@gmail.com</a></li>
-                           </ul>
+                            </ul>
                            `;                                                        
     //toglie l'hyperlink da sopra il video
     document.getElementById('chiude').remove();
