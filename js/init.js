@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const instances = M.Modal.init(elems, {dismissible: false
                                           }
                                   );
-    instances.open();
   });
 
 //funzione generalizzata per sostituire il testo di un elemento mantenendo i link
