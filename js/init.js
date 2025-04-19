@@ -34,8 +34,19 @@ document.addEventListener('DOMContentLoaded', function () {
 //initialize modal except cookiepolicy
 document.addEventListener('DOMContentLoaded', function () {
     const elems = document.querySelectorAll('.modal:not(#cookiepolicy)');
-    const instances = M.Modal.init(elems, {dismissible: false
-                                          }
+    const instances = M.Modal.init(elems, {dismissible: false,
+                                           onCloseEnd: function (el) {//clona l'elemento, lo rimuove e mette al suo posto il clone
+                                                                      const elparent = el.parentNode;
+                                                                      const elclone = el.cloneNode(true); 
+                                                                      elparent.removeChild(el);       
+                                                                      elparent.appendChild(elclone);   
+                                                                      //eeinizializza il modal sul clone ricollegando la stessa funzione
+                                                                      M.Modal.init(elclone, {dismissible: false,
+                                                                                             onCloseEnd: arguments.callee 
+                                                                                            }
+                                                                                  )
+                                                                     }
+                                           }                                                                                                                         
                                   );
   });
 
