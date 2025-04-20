@@ -1,3 +1,35 @@
+function aggiornaposizionisplashrecensioni() {
+    const imgtestoscelta = document.getElementById('testoscelta');
+    const divcarouselrecensioni = document.getElementById('carouselrecensioni');
+
+    const heightmiele = document.getElementById('imgmiele').offsetHeight;
+    
+    //calcola la nuova posizione 'y' per il testo SVG riportata a heightmiele
+    const nuovoY = heightmiele * (132/240);
+    //imposta la nuova posizione 'y' per il testo SVG riportata a heightmiele
+    imgtestoscelta.setAttribute('y', nuovoY);
+
+    //il carousel occuperà il 60% dell'altezza di imgmiele
+    const proporzioneAltezzaCarousel = 0.6; 
+    //ottiene l'altezza originale del carousel (se zero imposta a 100)
+    const altezzaOriginaleCarousel = divcarouselrecensioni.offsetHeight || 100;
+    //calcola il fattore di scala necessario per raggiungere l'altezza desiderata
+    const scalaDesiderata = (proporzioneAltezzaCarousel * imageHeight) / altezzaOriginaleCarousel;
+    //calcola la nuova traslazione 'y' per centrare verticalmente il carousel
+    const nuovaAltezzaCarouselScalata = altezzaOriginaleCarousel * scalaDesiderata;
+    const differenzaAltezza = imageHeight - nuovaAltezzaCarouselScalata;
+    const nuovaTranslateY = differenzaAltezza / 2;
+    //imposta la nuova traslazione 'y' e la scala per il carousel riportate a heightmiele
+    divcarouselrecensioni.style.webkitTransform  = `scale(${scalaDesiderata}) translateY(${nuovaTranslateY}px)`;
+    divcarouselrecensioni.style.MozTransform = `scale(${scalaDesiderata}) translateY(${nuovaTranslateY}px)`;
+    divcarouselrecensioni.msTransform = `scale(${scalaDesiderata}) translateY(${nuovaTranslateY}px)`;
+    divcarouselrecensioni.style.transform = `scale(${scalaDesiderata}) translateY(${nuovaTranslateY}px)`;
+   }   
+
+//aggiorna le posizioni di splashrecensioni al caricamento della pagina e ad ogni ridimensionamento della finestra
+window.onload = aggiornaposizionisplashrecensioni;
+window.addEventListener('resize', aggiornaposizionisplashrecensioni);   
+
 //initialize sidenav
 document.addEventListener('DOMContentLoaded', function() {
     const elems = document.querySelectorAll('.sidenav');
@@ -40,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                                                       const elclone = el.cloneNode(true); 
                                                                       elparent.removeChild(el);       
                                                                       elparent.appendChild(elclone);   
-                                                                      //eeinizializza il modal sul clone ricollegando la stessa funzione
+                                                                      //reinizializza il modal per il clone collegandovi la stessa funzione
                                                                       M.Modal.init(elclone, {dismissible: false,
                                                                                              onCloseEnd: arguments.callee 
                                                                                             }
