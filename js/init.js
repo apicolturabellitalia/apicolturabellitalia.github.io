@@ -9,8 +9,8 @@ function aggiornaposizionisplashrecensioni() {
     //imposta la nuova posizione 'y' per il testo SVG riportata a heightmiele
     imgtestoscelta.setAttribute('y', nuovoY);
 
-    //il carousel occuperà il 60% dell'altezza di imgmiele
-    const proporzioneAltezzaCarousel = 0.6; 
+    //il carousel occuperà il 25% dell'altezza di imgmiele
+    const proporzioneAltezzaCarousel = 0.25; 
     //ottiene l'altezza originale del carousel (se zero imposta a 100)
     const altezzaOriginaleCarousel = divcarouselrecensioni.offsetHeight || 100;
     //calcola il fattore di scala necessario per raggiungere l'altezza desiderata
