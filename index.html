@@ -88,23 +88,27 @@
  <div style="caret-color:transparent" class="container unselectable valign-wrapper center-align">
   <div class="card responsive-horizontal hoverable">
    <div style="position:relative;" class="card-image">
-    <img id="imgmiele" style="display:block; width:100%;" src="img/miele.jpeg" alt="Miele">
+    <img style="display:block; width:100%;" src="img/miele.jpeg" alt="Miele">
     <div id="splashrecensioni" style="display:none;">
-     <img style="display:block; position:absolute; top:0; left:0; width:100%; height:100%;" src="img/testoscelta.svg">
-     <div id="carouselrecensioni" style="display:block; position:absolute; top:0; left:0; width:100%; height:100%; -webkit-transform:scale(0.90) translateY(-64px); -moz-transform:scale(0.90) translateY(-64px); -ms-transform:scale(0.90) translateY(-64px); transform:scale(0.90) translateY(-64px); transform-origin:center;" class="carousel">
+     <div style="position:absolute; top:0; left:0; width:100%; height:auto;">
+      <img style="position:absolute; top:0; left:0; width:100%; height:auto;" src="img/miele_con_testoscelta_e_bottone.png" usemap="#bottone_chiudi_splashrecensioni_map">
+      <map name="bottone_chiudi_splashrecensioni_map">
+       <area shape="circle" coords="309,216,16" style="cursor:pointer;" onclick="viasplashrecensioni(event)">
+      </map>
+     </div>
+     <div id="carouselrecensioni" style="position:absolute; top:0; left:0; width:100%; height:50%;" class="carousel">
       <a style="height:auto!important;" class="carousel-item red modal-trigger" href="#modal2023"><img style="display:block; max-width:100%; height:auto; margin: 0 auto;" src="img/2023.png" alt="2023"></a>
       <a style="height:auto!important;" class="carousel-item green modal-trigger" href="#modal2024"><img style="display:block; max-width:100%; height:auto; margin: 0 auto;" src="img/2024.png" alt="2024"></a>
       <a style="height:auto!important;" class="carousel-item blue modal-trigger" href="#modal2025"><img style="display:block; max-width:100%; height:auto; margin: 0 auto;" src="img/2025.png" alt="2025"></a>
       <a style="height:auto!important;" class="carousel-item white modal-trigger" href="#modal2026"><img style="display:block; max-width:100%; height:auto; margin: 0 auto;" src="img/2026.png" alt="2026"></a>
       <a style="height:auto!important;" class="carousel-item yellow modal-trigger" href="#modal2027"><img style="display:block; max-width:100%; height:auto; margin: 0 auto;" src="img/2027.png" alt="2027"></a>
      </div>
-     <a style="display:block; position:absolute; bottom:6px; right:6px;" class="btn-floating btn-small waves-effect waves-light teal lighten-1" onclick="viasplashrecensioni(event);"><i class="material-icons">close</i></a>
     </div>
    </div>
    <div class="card-stacked">
     <span style="color:#be5504" class="card-title flow-text"><strong>Miele</strong></span>
     <div class="card-content">
-     <p class="flow-text light">Il miele è un alimento fantastico perch&eacute;<a href="#!" style="color:#be5504" onclick="splashrecensioni(event);">&nbsp;<u>ad ogni nuova stagione &egrave; diverso</u></a>! Faccio il millefiori ma, se la stagione lo permette, non solo, e sempre in confezioni da 500 g.</p>
+     <p class="flow-text light">Il miele è un alimento fantastico perch&eacute;<a style="color:#be5504" onclick="splashrecensioni(event);">&nbsp;<u>ad ogni nuova stagione &egrave; diverso</u></a>! Faccio il millefiori ma, se la stagione lo permette, non solo, e sempre in confezioni da 500 g.</p>
     </div>
     <div class="card-action">
      <a href="https://forms.gle/mMoYbxPXBToiqohS6" target="_blank" class="btn waves-effect waves-light teal lighten-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sono&nbsp;interessato&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
@@ -244,7 +248,7 @@
      <h5 class="white-text">Hmmm ... poco social!</h5>
      <p class="white-text">Ma prova a cercarmi su <a href="https://www.linkedin.com/in/albertomassocchi" target="_blank" class="brown-text text-lighten-3">Linkedin</a> ... giuro che aggiorner&ograve; il profilo!</p>
      <h5 class="white-text">Localizzami con <a href="https://goo.gl/maps/K8AseEdgRPDjK9jj9" target="_blank" class="brown-text text-lighten-3">Google Maps</a> ...</h5>
-     <p class="white-text"> ...e puoi scoprire perch&eacute; <q>bell'Italia</q><span id="quattroprovince">, o <a id='splash' href="#!" class="brown-text text-lighten-3" onclick="splash4province(event);">apri un veloce zoom sulle quattro province</a>.</span></p>
+     <p class="white-text"> ...e puoi scoprire perch&eacute; <q>bell'Italia</q><span id="quattroprovince">, o <a id='splash' class="brown-text text-lighten-3" onclick="splash4province(event);">apri un veloce zoom sulle quattro province</a>.</span></p>
     </div>
    </div>
   </div>
