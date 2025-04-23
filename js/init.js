@@ -1,86 +1,99 @@
-function aggiornaposizionisplashrecensioni() {
-    const imgtestoscelta = document.getElementById('testoscelta');
-    const divcarouselrecensioni = document.getElementById('carouselrecensioni');
+//lo splash per le recensioni contiene l'area del bottone di chiusura, con una mappa la rendiamo cliccabile e responsive
+let buttonchiudi;
+let mapcompleta;
+function aggiornacoordinatebottone() {
+    const basewidthrectmapcompleta = 332;
+    const baseheightrectmapcompleta = 240;
+    const basecenterX = 309;
+    const basecenterY = 216;
+    const baseradius = 16;
+    const rectmapcompleta = mapcompleta.getBoundingClientRect();
+    const widthmapcompleta = rectmapcompleta.width;
+    const heightmapcompleta = rectmapcompleta.height;
+    //calcola i nuovi centro e raggio per il bottone
+    const scaleX = widthmapcompleta / basewidthrectmapcompleta;
+    const scaleY = heightmapcompleta / baseheightrectmapcompleta;
+    const nuovocenterX = basecenterX * scaleX;
+    const nuovocenterY = basecenterY * scaleY;
+    const nuovoradius = baseradius * Math.min(scaleX, scaleY);
+    //imposta i nuovi centro e raggio per il bottone
+    buttonchiudi.coords = `${Math.round(nuovocenterX)},${Math.round(nuovocenterY)},${Math.round(nuovoradius)}`;
+}
 
-    const heightmiele = document.getElementById('imgmiele').offsetHeight;
-    
-    //calcola la nuova posizione 'y' per il testo SVG riportata a heightmiele
-    const nuovoY = heightmiele * (132/240);
-    //imposta la nuova posizione 'y' per il testo SVG riportata a heightmiele
-    imgtestoscelta.setAttribute('y', nuovoY);
-
-    //il carousel occuperà il 25% dell'altezza di imgmiele
-    const proporzioneAltezzaCarousel = 0.25; 
-    //ottiene l'altezza originale del carousel (se zero imposta a 100)
-    const altezzaOriginaleCarousel = divcarouselrecensioni.offsetHeight || 100;
-    //calcola il fattore di scala necessario per raggiungere l'altezza desiderata
-    const scalaDesiderata = (proporzioneAltezzaCarousel * imageHeight) / altezzaOriginaleCarousel;
-    //calcola la nuova traslazione 'y' per centrare verticalmente il carousel
-    const nuovaAltezzaCarouselScalata = altezzaOriginaleCarousel * scalaDesiderata;
-    const differenzaAltezza = imageHeight - nuovaAltezzaCarouselScalata;
-    const nuovaTranslateY = differenzaAltezza / 2;
-    //imposta la nuova traslazione 'y' e la scala per il carousel riportate a heightmiele
-    divcarouselrecensioni.style.webkitTransform  = `scale(${scalaDesiderata}) translateY(${nuovaTranslateY}px)`;
-    divcarouselrecensioni.style.MozTransform = `scale(${scalaDesiderata}) translateY(${nuovaTranslateY}px)`;
-    divcarouselrecensioni.msTransform = `scale(${scalaDesiderata}) translateY(${nuovaTranslateY}px)`;
-    divcarouselrecensioni.style.transform = `scale(${scalaDesiderata}) translateY(${nuovaTranslateY}px)`;
-   }   
-
-//aggiorna le posizioni di splashrecensioni al caricamento della pagina e ad ogni ridimensionamento della finestra
-window.onload = aggiornaposizionisplashrecensioni;
-window.addEventListener('resize', aggiornaposizionisplashrecensioni);   
+//mantiene aggiornate le coordinate del bottone di chiusura
+document.addEventListener('DOMContentLoaded',
+                          function() {
+                              mapcompleta = document.querySelector('img[usemap="#bottone_chiudi_splashrecensioni_map"]');
+                              const mapbuttonchiudi = document.querySelector('map[name="bottone_chiudi_splashrecensioni_map"]');
+                              buttonchiudi = mapbuttonchiudi.querySelector('area[shape="circle"]');
+                              //aggiorna le coordinate del bottone di chiusura al caricamento dello splash per le recensioni
+                              mapcompleta.addEventListener('load', aggiornacoordinatebottone);
+                              //aggiorna le coordinate del bottone di chiusura dello splash per le recensioni quando la finestra viene ridimensionata
+                              window.addEventListener('resize', aggiornacoordinatebottone);
+                          }
+);
 
 //initialize sidenav
-document.addEventListener('DOMContentLoaded', function() {
-    const elems = document.querySelectorAll('.sidenav');
-    const instances = M.Sidenav.init(elems, { //specify options here
-                                            }
-                                    );
-});
+document.addEventListener('DOMContentLoaded',
+                          function() {
+                              const elems = document.querySelectorAll('.sidenav');
+                              const instances = M.Sidenav.init(elems, { //specify options here
+                                                                      }
+                                                              );
+                          }
+);
 
 //initialize parallax
-document.addEventListener('DOMContentLoaded', function() {
-    const elems = document.querySelectorAll('.parallax');
-    const instances = M.Parallax.init(elems, { //specify options here
-                                             }
-                                     );
-  });
+document.addEventListener('DOMContentLoaded',
+                          function() {
+                              const elems = document.querySelectorAll('.parallax');
+                              const instances = M.Parallax.init(elems, { //specify options here
+                                                                       }
+                                                               );
+                          }
+);
 
 //initialize collapsible
-document.addEventListener('DOMContentLoaded', function() {
-    const elems = document.querySelectorAll('.collapsible');
-    const instances = M.Collapsible.init(elems, { //specify options here
-                                                }
-                                         );
-  });
+document.addEventListener('DOMContentLoaded',
+                          function() {
+                              const elems = document.querySelectorAll('.collapsible');
+                              const instances = M.Collapsible.init(elems, { //specify options here
+                                                                          }
+                                                                  );
+                          }
+);
 
 //show div id cookiepolicy as modal (initialize modal for cookiepolicy)
-document.addEventListener('DOMContentLoaded', function () {
-    const elems = document.getElementById('cookiepolicy');
-    const instances = M.Modal.init(elems, {dismissible: false
-                                          }
-                                  );
-    instances.open();
-  });
+document.addEventListener('DOMContentLoaded',
+                          function () {
+                              const elems = document.getElementById('cookiepolicy');
+                              const instances = M.Modal.init(elems, {dismissible: false}
+                                                            );
+                              instances.open();
+                          }
+);
 
 //initialize modal except cookiepolicy
-document.addEventListener('DOMContentLoaded', function () {
-    const elems = document.querySelectorAll('.modal:not(#cookiepolicy)');
-    const instances = M.Modal.init(elems, {dismissible: false,
-                                           onCloseEnd: function (el) {//clona l'elemento, lo rimuove e mette al suo posto il clone
-                                                                      const elparent = el.parentNode;
-                                                                      const elclone = el.cloneNode(true); 
-                                                                      elparent.removeChild(el);       
-                                                                      elparent.appendChild(elclone);   
-                                                                      //reinizializza il modal per il clone collegandovi la stessa funzione
-                                                                      M.Modal.init(elclone, {dismissible: false,
-                                                                                             onCloseEnd: arguments.callee 
-                                                                                            }
-                                                                                  )
-                                                                     }
-                                           }                                                                                                                         
-                                  );
-  });
+document.addEventListener('DOMContentLoaded',
+                          function () {
+                              const elems = document.querySelectorAll('.modal:not(#cookiepolicy)');
+                              const instances = M.Modal.init(elems, {dismissible: false,
+                                                                     onCloseEnd: function (el) {
+                                                                                     //clona l'elemento, lo rimuove e mette al suo posto il clone
+                                                                                     const elparent = el.parentNode;
+                                                                                     const elclone = el.cloneNode(true); 
+                                                                                     elparent.removeChild(el);       
+                                                                                     elparent.appendChild(elclone);   
+                                                                                     //reinizializza il modal per il clone collegandovi la stessa funzione
+                                                                                     M.Modal.init(elclone, {dismissible: false,
+                                                                                                            onCloseEnd: arguments.callee 
+                                                                                                           }
+                                                                                                 )
+                                                                                }
+                                                                    }                                                                                                                         
+                                                            );
+                          }
+);
 
 //funzione generalizzata per sostituire il testo di un elemento mantenendo i link
 //usa un array di nodi da sostituire esterni ai link (sostituzioni), meglio mettere un elemento dell'array per ogni nodo diverso che si vuole cambiare, senza HTML entity o HTML special character
@@ -239,40 +252,39 @@ function viasplash4province(e) {
     videoelement.playbackRate = 1;
     //alla fine lo deve restringere e sostituirlo nella colonna di sinistra
     videoelement.addEventListener('ended',
-                                  function() {videoelement.classList.replace('scale-in','scale-out');
-                                              //risistema l'elemento HTML di contatto
-                                              document.getElementById('colonna1').replaceChildren(htmlelement);
-                                              //rimette a posto il testo e sistema l'hyperlink da cui è partito per poter ricominciare
-                                              rimpiazzaTestoConLinks(document.getElementById('quattroprovince'),
-                                                                     {' (mentre ': ', o ',
-                                                                      ').': '.'                           
-                                                                     }
-                                                                    );
-                                              //sistema l'hyperlink da cui è partito per poter ricominciare (e.currentTarget non va bene perché suiamo dentro ended)
-                                              var thislinkelement = document.getElementById('splash');
-                                              thislinkelement.setAttribute('onclick', 'splash4province(event);');
-                                              thislinkelement.innerHTML = 'apri un veloce zoom sulle quattro province';
-                                              //rimuovi l'event listener per non eseguirlo più
-                                              videoelement.removeEventListener('ended');                                              
-                                             },
+                                  function() {
+                                      videoelement.classList.replace('scale-in','scale-out');
+                                      //risistema l'elemento HTML di contatto
+                                      document.getElementById('colonna1').replaceChildren(htmlelement);
+                                      //rimette a posto il testo e sistema l'hyperlink da cui è partito per poter ricominciare
+                                      rimpiazzaTestoConLinks(document.getElementById('quattroprovince'),
+                                                             {' (mentre ': ', o ',
+                                                              ').': '.'                           
+                                                             }
+                                                            );
+                                      //sistema l'hyperlink da cui è partito per poter ricominciare (e.currentTarget non va bene perché suiamo dentro ended)
+                                      var thislinkelement = document.getElementById('splash');
+                                      thislinkelement.setAttribute('onclick', 'splash4province(event);');
+                                      thislinkelement.innerHTML = 'apri un veloce zoom sulle quattro province';
+                                      //rimuovi l'event listener per non eseguirlo più
+                                      videoelement.removeEventListener('ended');                                              
+                                  },
                                   {capture: true, once: true}
                                  );
     videoelement.play();
    }
    
 function splashrecensioni(e) {
-    //impedisce il comportamento predefinito del link
-    e.preventDefault();
-    //impedisce la propagazione dell'evento
-    e.stopPropagation();
-    //rendi visibile il div
-    var divelement = document.getElementById("splashrecensioni");
+    //rende visibile il div 
+    const divelement = document.getElementById("splashrecensioni");
     divelement.style.display = "block";
-    //trova il carousel dentro il div appena reso visibile e lo inizializza
-    const elem = divelement.querySelector('.carousel');
+    //inizializza il carousel dentro il div appena reso visibile
+    const elem = document.getElementById('carouselrecensioni');
     const instance = M.Carousel.init(elem, { //opzioni specifiche per questo carousel se necessarie
                                            }
-                                    ); 
+                                    );
+    //aggiorna le coordinate del bottone di chiusura
+    aggiornacoordinatebottone();
    }
    
 function viasplashrecensioni(e) {
