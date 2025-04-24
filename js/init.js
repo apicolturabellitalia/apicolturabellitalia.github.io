@@ -283,8 +283,8 @@ function splashrecensioni(e) {
     const instance = M.Carousel.init(elem, { //opzioni specifiche per questo carousel se necessarie
                                            }
                                     );
+    //sposta la finestra di conseguenza e aggiorna le coordinate del bottone di chiusura
     document.getElementById('Prodotti').scrollIntoView({ behavior: 'smooth' });
-    //aggiorna le coordinate del bottone di chiusura
     aggiornacoordinatebottone();
    }
    
