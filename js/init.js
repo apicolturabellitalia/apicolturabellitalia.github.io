@@ -1,5 +1,5 @@
-//lo splash per le recensioni contiene l'area del bottone di chiusura, con una mappa la rendiamo cliccabile e responsive
 let buttonchiudi;
+//lo splash per le recensioni contiene l'area del bottone di chiusura, con una mappa la rendiamo cliccabile e responsive
 let mapcompleta;
 function aggiornacoordinatebottone() {
     const basewidthrectmapcompleta = 332;
@@ -18,7 +18,7 @@ function aggiornacoordinatebottone() {
     const nuovoradius = baseradius * Math.min(scaleX, scaleY);
     //imposta i nuovi centro e raggio per il bottone
     buttonchiudi.coords = `${Math.round(nuovocenterX)},${Math.round(nuovocenterY)},${Math.round(nuovoradius)}`;
-}
+   }
 
 //mantiene aggiornate le coordinate del bottone di chiusura
 document.addEventListener('DOMContentLoaded',
@@ -30,70 +30,77 @@ document.addEventListener('DOMContentLoaded',
                               mapcompleta.addEventListener('load', aggiornacoordinatebottone);
                               //aggiorna le coordinate del bottone di chiusura dello splash per le recensioni quando la finestra viene ridimensionata
                               window.addEventListener('resize', aggiornacoordinatebottone);
-                          }
-);
+                             }
+                         );
 
 //initialize sidenav
 document.addEventListener('DOMContentLoaded',
                           function() {
                               const elems = document.querySelectorAll('.sidenav');
-                              const instances = M.Sidenav.init(elems, { //specify options here
-                                                                      }
+                              const instances = M.Sidenav.init(elems,
+                                                               { //specify options here
+                                                               }
                                                               );
-                          }
-);
+                             }
+                         );
 
 //initialize parallax
 document.addEventListener('DOMContentLoaded',
                           function() {
                               const elems = document.querySelectorAll('.parallax');
-                              const instances = M.Parallax.init(elems, { //specify options here
-                                                                       }
+                              const instances = M.Parallax.init(elems,
+                                                                { //specify options here
+                                                                }
                                                                );
-                          }
-);
+                             }
+                         );
 
 //initialize collapsible
 document.addEventListener('DOMContentLoaded',
                           function() {
                               const elems = document.querySelectorAll('.collapsible');
-                              const instances = M.Collapsible.init(elems, { //specify options here
-                                                                          }
+                              const instances = M.Collapsible.init(elems,
+                                                                   { //specify options here
+                                                                   }
                                                                   );
-                          }
-);
+                             }
+                         );
 
 //show div id cookiepolicy as modal (initialize modal for cookiepolicy)
 document.addEventListener('DOMContentLoaded',
                           function () {
                               const elems = document.getElementById('cookiepolicy');
-                              const instances = M.Modal.init(elems, {dismissible: false}
+                              const instances = M.Modal.init(elems,
+                                                             {dismissible: false
+                                                             }
                                                             );
                               instances.open();
-                          }
-);
+                             }
+                         );
 
 //initialize modal except cookiepolicy
 document.addEventListener('DOMContentLoaded',
                           function () {
                               const elems = document.querySelectorAll('.modal:not(#cookiepolicy)');
-                              const instances = M.Modal.init(elems, {dismissible: false,
-                                                                     onCloseEnd: function (el) {
-                                                                                     //clona l'elemento, lo rimuove e mette al suo posto il clone
-                                                                                     const elparent = el.parentNode;
-                                                                                     const elclone = el.cloneNode(true); 
-                                                                                     elparent.removeChild(el);       
-                                                                                     elparent.appendChild(elclone);   
-                                                                                     //reinizializza il modal per il clone collegandovi la stessa funzione
-                                                                                     M.Modal.init(elclone, {dismissible: false,
-                                                                                                            onCloseEnd: arguments.callee 
-                                                                                                           }
-                                                                                                 )
-                                                                                }
-                                                                    }                                                                                                                         
+                              const instances = M.Modal.init(elems,
+                                                             {dismissible: false,
+                                                              onCloseEnd: function (el) {
+                                                                              //clona l'elemento, lo rimuove e mette al suo posto il clone
+                                                                              const elparent = el.parentNode;
+                                                                              const elclone = el.cloneNode(true); 
+                                                                              elparent.removeChild(el);       
+                                                                              elparent.appendChild(elclone);   
+                                                                              //reinizializza il modal per il clone collegandovi la stessa funzione
+                                                                              M.Modal.init(elclone,
+                                                                                           {dismissible: false,
+                                                                                            onCloseEnd: arguments.callee 
+                                                                                           }
+                                                                                          )
+                                                                             }
+                                                             }                                                                                                                         
                                                             );
-                          }
-);
+                             }
+                         );
 
 //funzione generalizzata per sostituire il testo di un elemento mantenendo i link
 //usa un array di nodi da sostituire esterni ai link (sostituzioni), meglio mettere un elemento dell'array per ogni nodo diverso che si vuole cambiare, senza HTML entity o HTML special character
@@ -105,13 +112,20 @@ function rimpiazzaTestoConLinks(element, sostituzioni) {
         if (textnode.nodeType === Node.TEXT_NODE) {
            let testoOriginale = textnode.textContent;
            //se il testo del nodo corrisponde esattamente a una chiave di sostituzione sostituisce il testo con il valore corrispondente
-           if (sostituzioni[testoOriginale]) {
-              textnode.textContent = unescape(sostituzioni[testoOriginale]);
-             }
+           if (sostituzioni[testoOriginale]) {textnode.textContent = unescape(sostituzioni[testoOriginale]);}
           }
           //se il nodo è un <a> non fa nulla
           else if (textnode.nodeType === Node.ELEMENT_NODE && textnode.tagName === 'A') {}
        }
+   }
+
+//funzione generalizzata per il render di testo con caratteri speciali che quindi va composto con entità HTML
+function decodificaHtml(html) {
+    const testoconhtmlentity = document.createElement('textarea');
+    testoconhtmlentity.innerHTML = html;
+    const testo = testoconhtmlentity.value;
+    testoconhtmlentity.remove();
+    return testo;
    }
 
 function splash4province(e) {
@@ -121,7 +135,7 @@ function splash4province(e) {
     videoelement.id = 'videoscalabile';
     videoelement.className='materialboxed responsive-video scale-transition scale-out';
     videoelement.alt='Zoom sulle quattro province';
-    videoelement.dataset.caption = 'Montebello della Battaglia è un po\' a nord ovest';
+    videoelement.dataset.caption = decodificaHtml('Montebello della Battaglia &egrave; un po&rsquo; a nord ovest');
     var sourceMP4element = document.createElement('source'); 
     sourceMP4element.type = 'video/mp4';
     sourceMP4element.src = 'img/4province.mp4';
@@ -133,7 +147,7 @@ function splash4province(e) {
     linkelement.className = 'indigo-text text-darken-4 Heading h2';
     linkelement.setAttribute('onclick', 'viasplash4province(event);');
     linkelement.innerText = 'qui puoi chiudere lo zoom';
-    linkelement.style='font-size:5vw; text-decoration: underline;';
+    linkelement.style='font-size:5vw; text-decoration:underline;';
     linkelement.style.position = 'absolute';
     linkelement.style.top = '50%'; 
     linkelement.style.left = '50%';
@@ -150,16 +164,16 @@ function splash4province(e) {
     container.style.justifyContent = "center"; 
     container.style.width = '100%'; 
     container.style.height = 'auto';
-    //nel contenitore mette uno spinner per ingannare il tempo nell'attesa ...
-    container.innerHTML+=`<div id="attendivideoscalabile" style="position: absolute; top: 50%; left: 50%; opacity:1; transition:opacity 0.5s ease; will-change:opacity;" class="preloader-wrapper small active">
-                           <div style="border-color: #1A237E;" class="spinner-layer">
+    //nel contenitore mette uno spinner sopra tutto per ingannare il tempo nell'attesa ...
+    container.innerHTML+=`<div id="attendivideoscalabile" style="position:absolute; top:50%; left:50%; opacity:1; transition:opacity 0.5s ease; will-change:opacity; z-index:20;" class="preloader-wrapper small active">
+                           <div style="border-color:#1A237E;" class="spinner-layer">
                             <div class="circle-clipper left">
-                             <div style="border-color: #1A237E;" class="circle"></div>
+                             <div style="border-color:#1A237E;" class="circle"></div>
                             </div>
                             <div class="gap-patch">
-                             <div style="border-color: #1A237E;" class="circle"></div>
+                             <div style="border-color:#1A237E;" class="circle"></div>
                             </div>
-                            <div style="border-color: #1A237E;" class="circle-clipper right">
+                            <div style="border-color:#1A237E;" class="circle-clipper right">
                              <div class="circle"></div>
                             </div>
                            </div>
@@ -189,17 +203,18 @@ function splash4province(e) {
            M.Materialbox.init(videoelement, { //opzioni specifiche per questo materialbox se necessarie
                                             }
                              );
-           //cambia il testo sistema l'hyperlink da cui è partito per poter tornere indietro
+           //cambia il testo e sistema l'hyperlink da cui è partito per poter tornere indietro
+           //cambia il testo
            rimpiazzaTestoConLinks(document.getElementById('quattroprovince'),
                                   {', o ': ' (mentre ',
                                    '.': ').'           
                                   }
                                  );
-           //sistema l'hyperlink da cui è partito per poter tornere indietro (e.currentTarget non va bene perché suiamo dentro timeupdate)
+           //sistema l'hyperlink da cui è partito per poter tornere indietro (e.currentTarget non va bene perché siamo dentro timeupdate)
            var thislinkelement = document.getElementById('splash');
            thislinkelement.setAttribute('onclick', 'viasplash4province(event);');
            thislinkelement.innerHTML = 'qui puoi chiudere lo zoom';
-           //rimuovi l'event listener per non eseguirlo più
+           //rimuove l'event listener per non eseguirlo più
            videoelement.removeEventListener('timeupdate', checkVideoTime);
           }
        }
@@ -212,11 +227,6 @@ function splash4province(e) {
                                                     spinner.style.opacity = '1';
                                                    }
                                  );
-    //imposta l'event Listener per nascondere lo spinner quando il video può partire
-    videoelement.addEventListener('canplaythrough', () => {
-                                                           spinner.style.opacity = '0';
-                                                          }
-                                 );
     //imposta l'event listener per bloccare il video e avvia la riproduzione controllata solo dopo che i dati sono disponibili
     videoelement.addEventListener('loadeddata', () => {
                                                        videoelement.addEventListener('timeupdate', checkVideoTime);
@@ -224,10 +234,15 @@ function splash4province(e) {
                                                        videoelement.play().then(() => {
                                                                                        //avvia l'animazione di scaling durante la riproduzione e poi sposta la finestra di conseguenza
                                                                                        videoelement.classList.replace('scale-out', 'scale-in');
-                                                                                       document.getElementById('Trovaci').scrollIntoView({ behavior: 'smooth' });
-                                                                                       }
+                                                                                       document.getElementById('Trovaci').scrollIntoView({behavior: 'smooth'});
+                                                                                      }
                                                                                );
                                                        }
+                                 );
+    //imposta l'event Listener per nascondere lo spinner quando il video può partire
+    videoelement.addEventListener('canplaythrough', () => {
+                                                           spinner.style.opacity = '0';
+                                                          }
                                  );
     //ora avvia il caricamento
     videoelement.load();
@@ -239,7 +254,7 @@ function viasplash4province(e) {
     var htmlelement = document.createElement('div');    
     htmlelement.innerHTML+=`<h5 class="white-text">Contatti</h5>
                             <ul>
-                             <li class="white-text">Apicoltura bell\'Italia<br>Alberto Massocchi<br>Via per Casteggio 38<br>Montebello della Battaglia (PV)</li>
+                             <li class="white-text">Apicoltura bell&rsquo;Italia<br>Alberto Massocchi<br>Via per Casteggio 38<br>Montebello della Battaglia (PV)</li>
                              <li class="white-text">tel. <a href="tel:0039038382619" class="brown-text text-lighten-3">+39038382619</a></li>
                              <li class="white-text">cell. <a href="tel:00393356895071" class="brown-text text-lighten-3">+393356895071</a></li>
                              <li class="white-text">email <a href="mailto:alberto.massocchi@gmail.com?subject=Apicoltura bell\'Italia" target="_blank" class="brown-text text-lighten-3">alberto.massocchi@gmail.com</a></li>
@@ -268,7 +283,7 @@ function viasplash4province(e) {
                                       thislinkelement.innerHTML = 'apri un veloce zoom sulle quattro province';
                                       //rimuovi l'event listener per non eseguirlo più
                                       videoelement.removeEventListener('ended');                                              
-                                  },
+                                     },
                                   {capture: true, once: true}
                                  );
     videoelement.play();
@@ -284,7 +299,7 @@ function splashrecensioni(e) {
                                            }
                                     );
     //sposta la finestra di conseguenza e aggiorna le coordinate del bottone di chiusura
-    document.getElementById('Prodotti').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('Prodotti').scrollIntoView({behavior: 'smooth'});
     aggiornacoordinatebottone();
    }
    
