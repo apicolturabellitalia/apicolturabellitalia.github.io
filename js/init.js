@@ -1,23 +1,23 @@
-let buttonchiudi;
 //lo splash per le recensioni contiene l'area del bottone di chiusura, con una mappa la rendiamo cliccabile e responsive
+let buttonchiudi;
 let mapcompleta;
 function aggiornacoordinatebottone() {
     const basewidthrectmapcompleta = 332;
     const baseheightrectmapcompleta = 240;
-    const basecenterX = 309;
-    const basecenterY = 216;
-    const baseradius = 16;
+    const basecenterXbuttonchiudi = 309;
+    const basecenterYbuttonchiudi = 216;
+    const baseradiusbuttonchiudi = 16;
     const rectmapcompleta = mapcompleta.getBoundingClientRect();
     const widthmapcompleta = rectmapcompleta.width;
     const heightmapcompleta = rectmapcompleta.height;
     //calcola i nuovi centro e raggio per il bottone
     const scaleX = widthmapcompleta / basewidthrectmapcompleta;
     const scaleY = heightmapcompleta / baseheightrectmapcompleta;
-    const nuovocenterX = basecenterX * scaleX;
-    const nuovocenterY = basecenterY * scaleY;
-    const nuovoradius = baseradius * Math.min(scaleX, scaleY);
+    const nuovocenterXbuttonchiudi = basecenterXbuttonchiudi * scaleX;
+    const nuovocenterYbuttonchiudi = basecenterYbuttonchiudi * scaleY;
+    const nuovoradiusbuttonchiudi = baseradiusbuttonchiudi * Math.min(scaleX, scaleY);
     //imposta i nuovi centro e raggio per il bottone
-    buttonchiudi.coords = `${Math.round(nuovocenterX)},${Math.round(nuovocenterY)},${Math.round(nuovoradius)}`;
+    buttonchiudi.coords = `${Math.round(nuovocenterXbuttonchiudi)},${Math.round(nuovocenterYbuttonchiudi)},${Math.round(nuovoradiusbuttonchiudi)}`;
    }
 
 //mantiene aggiornate le coordinate del bottone di chiusura
@@ -27,9 +27,13 @@ document.addEventListener('DOMContentLoaded',
                               const mapbuttonchiudi = document.querySelector('map[name="bottone_chiudi_splashrecensioni_map"]');
                               buttonchiudi = mapbuttonchiudi.querySelector('area[shape="circle"]');
                               //aggiorna le coordinate del bottone di chiusura al caricamento dello splash per le recensioni
-                              mapcompleta.addEventListener('load', aggiornacoordinatebottone);
+                              mapcompleta.addEventListener('load',
+                                                           aggiornacoordinatebottone
+                                                          );
                               //aggiorna le coordinate del bottone di chiusura dello splash per le recensioni quando la finestra viene ridimensionata
-                              window.addEventListener('resize', aggiornacoordinatebottone);
+                              window.addEventListener('resize',
+                                                      aggiornacoordinatebottone
+                                                     );
                              }
                          );
 
@@ -119,7 +123,7 @@ function rimpiazzaTestoConLinks(element, sostituzioni) {
        }
    }
 
-//funzione generalizzata per il render di testo con caratteri speciali che quindi va composto con entità HTML
+//funzione generalizzata per il render di testo con caratteri speciali che quindi va composto con HTML entity e HTML special character
 function decodificaHtml(html) {
     const testoconhtmlentity = document.createElement('textarea');
     testoconhtmlentity.innerHTML = html;
@@ -133,10 +137,14 @@ function splash4province(e) {
     //crea l'elemento video ridotto al minimo 
     var videoelement = document.createElement('video');
     videoelement.id = 'videoscalabile';
-    videoelement.className='materialboxed responsive-video scale-transition scale-out';
-    videoelement.alt='Zoom sulle quattro province';
+    videoelement.className = 'materialboxed responsive-video scale-transition scale-out';
+    videoelement.alt = 'Zoom sulle quattro province';
     videoelement.dataset.caption = decodificaHtml('Montebello della Battaglia &egrave; un po&rsquo; a nord ovest');
-    var sourceMP4element = document.createElement('source'); 
+    videoelement.disablePictureInPicture = true
+    videoelement.style.display = 'block';
+    videoelement.style.width = '100%';
+    videoelement.style.height = 'auto';
+    var sourceMP4element = document.createElement('source');
     sourceMP4element.type = 'video/mp4';
     sourceMP4element.src = 'img/4province.mp4';
     videoelement.appendChild(sourceMP4element);
@@ -144,7 +152,7 @@ function splash4province(e) {
     var linkelement = document.createElement('a');
     linkelement.id = 'chiude';
     linkelement.href = '#!';
-    linkelement.className = 'indigo-text text-darken-4 Heading h2';
+    linkelement.className = 'indigo-text text-darken-4';
     linkelement.setAttribute('onclick', 'viasplash4province(event);');
     linkelement.innerText = 'qui puoi chiudere lo zoom';
     linkelement.style='font-size:5vw; text-decoration:underline;';
@@ -165,7 +173,7 @@ function splash4province(e) {
     container.style.width = '100%'; 
     container.style.height = 'auto';
     //nel contenitore mette uno spinner sopra tutto per ingannare il tempo nell'attesa ...
-    container.innerHTML+=`<div id="attendivideoscalabile" style="position:absolute; top:50%; left:50%; opacity:1; transition:opacity 0.5s ease; will-change:opacity; z-index:20;" class="preloader-wrapper small active">
+    container.innerHTML+=`<div id="attendivideoscalabile" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); z-index:20; opacity:1; transition:opacity 0.5s ease; will-change:opacity;" class="preloader-wrapper small active">
                            <div style="border-color:#1A237E;" class="spinner-layer">
                             <div class="circle-clipper left">
                              <div style="border-color:#1A237E;" class="circle"></div>
@@ -200,8 +208,9 @@ function splash4province(e) {
            //mostra l'hyperlink
            linkelement.style.display = 'block';
            //inizializza l'elemento per il materialbox
-           M.Materialbox.init(videoelement, { //opzioni specifiche per questo materialbox se necessarie
-                                            }
+           M.Materialbox.init(videoelement,
+                              { //opzioni specifiche per questo materialbox se necessarie
+                              }
                              );
            //cambia il testo e sistema l'hyperlink da cui è partito per poter tornere indietro
            //cambia il testo
@@ -215,7 +224,9 @@ function splash4province(e) {
            thislinkelement.setAttribute('onclick', 'viasplash4province(event);');
            thislinkelement.innerHTML = 'qui puoi chiudere lo zoom';
            //rimuove l'event listener per non eseguirlo più
-           videoelement.removeEventListener('timeupdate', checkVideoTime);
+           videoelement.removeEventListener('timeupdate',
+                                            checkVideoTime
+                                           );
           }
        }
 
@@ -223,26 +234,27 @@ function splash4province(e) {
     //imposta la velocità di riproduzione del video
     videoelement.playbackRate = 0.75;
     //imposta l'event listener per mostrare lo spinner se il video è in buffering
-    videoelement.addEventListener('waiting', () => {
-                                                    spinner.style.opacity = '1';
-                                                   }
+    videoelement.addEventListener('waiting',
+                                  () => {spinner.style.opacity = '1';}
                                  );
     //imposta l'event listener per bloccare il video e avvia la riproduzione controllata solo dopo che i dati sono disponibili
-    videoelement.addEventListener('loadeddata', () => {
-                                                       videoelement.addEventListener('timeupdate', checkVideoTime);
-                                                       //avvia la riproduzione
-                                                       videoelement.play().then(() => {
-                                                                                       //avvia l'animazione di scaling durante la riproduzione e poi sposta la finestra di conseguenza
-                                                                                       videoelement.classList.replace('scale-out', 'scale-in');
-                                                                                       document.getElementById('Trovaci').scrollIntoView({behavior: 'smooth'});
-                                                                                      }
-                                                                               );
-                                                       }
+    videoelement.addEventListener('loadeddata',
+                                  () => {
+                                         videoelement.addEventListener('timeupdate',
+                                                                       checkVideoTime
+                                                                      );
+                                         //avvia la riproduzione
+                                         videoelement.play().then(() => {
+                                                                         //avvia l'animazione di scaling durante la riproduzione e poi sposta la finestra di conseguenza
+                                                                         videoelement.classList.replace('scale-out', 'scale-in');
+                                                                         document.getElementById('Trovaci').scrollIntoView({behavior: 'smooth'});
+                                                                        }
+                                                                  );
+                                        }
                                  );
-    //imposta l'event Listener per nascondere lo spinner quando il video può partire
-    videoelement.addEventListener('canplaythrough', () => {
-                                                           spinner.style.opacity = '0';
-                                                          }
+    //imposta l'event Listener per nascondere lo spinner quando il video può partire senza strappi
+    videoelement.addEventListener('canplaythrough',
+                                  () => {spinner.style.opacity = '0';}
                                  );
     //ora avvia il caricamento
     videoelement.load();
@@ -257,7 +269,7 @@ function viasplash4province(e) {
                              <li class="white-text">Apicoltura bell&rsquo;Italia<br>Alberto Massocchi<br>Via per Casteggio 38<br>Montebello della Battaglia (PV)</li>
                              <li class="white-text">tel. <a href="tel:0039038382619" class="brown-text text-lighten-3">+39038382619</a></li>
                              <li class="white-text">cell. <a href="tel:00393356895071" class="brown-text text-lighten-3">+393356895071</a></li>
-                             <li class="white-text">email <a href="mailto:alberto.massocchi@gmail.com?subject=Apicoltura bell\'Italia" target="_blank" class="brown-text text-lighten-3">alberto.massocchi@gmail.com</a></li>
+                             <li class="white-text">email <a href="mailto:alberto.massocchi@gmail.com?subject=Apicoltura bell&rsquo;Italia" target="_blank" class="brown-text text-lighten-3">alberto.massocchi@gmail.com</a></li>
                             </ul>
                            `;                                                        
     //toglie l'hyperlink da sopra il video
@@ -295,8 +307,9 @@ function splashrecensioni(e) {
     divelement.style.display = "block";
     //inizializza il carousel dentro il div appena reso visibile
     const elem = document.getElementById('carouselrecensioni');
-    const instance = M.Carousel.init(elem, { //opzioni specifiche per questo carousel se necessarie
-                                           }
+    const instance = M.Carousel.init(elem,
+                                     { //opzioni specifiche per questo carousel se necessarie
+                                     }
                                     );
     //sposta la finestra di conseguenza e aggiorna le coordinate del bottone di chiusura
     document.getElementById('Prodotti').scrollIntoView({behavior: 'smooth'});
