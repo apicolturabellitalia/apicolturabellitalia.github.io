@@ -173,7 +173,7 @@ function splash4province(e) {
     container.style.width = '100%'; 
     container.style.height = 'auto';
     //nel contenitore mette uno spinner sopra tutto per ingannare il tempo nell'attesa ...
-    container.innerHTML+=`<div id="attendivideoscalabile" style="position:absolute; top:50%; left:50%; z-index:20; opacity:1; transition:opacity 0.5s ease; will-change:opacity;" class="preloader-wrapper small active">
+    container.innerHTML+=`<div id="attendivideoscalabile" style="position:absolute; top:50%; left:50%; align-content:center; z-index:20; opacity:1; transition:opacity 0.5s ease; will-change:opacity;" class="preloader-wrapper small active">
                            <div style="border-color:#1A237E;" class="spinner-layer">
                             <div class="circle-clipper left">
                              <div style="border-color:#1A237E;" class="circle"></div>
