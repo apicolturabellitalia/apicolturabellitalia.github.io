@@ -59,26 +59,15 @@ document.addEventListener('DOMContentLoaded',
                              }
                          );
 
-//initialize collapsible
-document.addEventListener('DOMContentLoaded',
-                          function() {
-                              const elems = document.querySelectorAll('.collapsible');
-                              const instances = M.Collapsible.init(elems,
-                                                                   { //specify options here
-                                                                   }
-                                                                  );
-                             }
-                         );
-
 //show div id cookiepolicy as modal (initialize modal for cookiepolicy)
 document.addEventListener('DOMContentLoaded',
                           function () {
-                              const elems = document.getElementById('cookiepolicy');
-                              const instances = M.Modal.init(elems,
-                                                             {dismissible: false
-                                                             }
-                                                            );
-                              instances.open();
+                              const elem = document.getElementById('cookiepolicy');
+                              const instance = M.Modal.init(elem,
+                                                            {dismissible: false
+                                                            }
+                                                           );
+                              instance.open();
                              }
                          );
 
@@ -99,7 +88,7 @@ document.addEventListener('DOMContentLoaded',
                                                                                            {dismissible: false,
                                                                                             onCloseEnd: arguments.callee 
                                                                                            }
-                                                                                          )
+                                                                                          );
                                                                              }
                                                              }                                                                                                                         
                                                             );
@@ -140,7 +129,7 @@ function splash4province(e) {
     videoelement.className = 'materialboxed responsive-video scale-transition scale-out';
     videoelement.alt = 'Zoom sulle quattro province';
     videoelement.dataset.caption = decodificaHtml('Montebello della Battaglia &egrave; un po&rsquo; a nord ovest');
-    videoelement.disablePictureInPicture = true
+    videoelement.disablePictureInPicture = true;
     videoelement.style.display = 'block';
     videoelement.style.width = '100%';
     videoelement.style.height = 'auto';
