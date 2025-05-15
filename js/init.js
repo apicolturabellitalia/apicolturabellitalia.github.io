@@ -123,7 +123,17 @@ function decodificaHtml(html) {
 
 function splash4province(e) {
     //crea l'elemento video ridotto al minimo e il link di chiusura, li sostituisce alla colonna di sinistra, allarga il video, lo avvia e inizializza l'elemento per javascript, cambia il testo per segnalare come tornare, cambia il link per tornare
-    //crea l'elemento video ridotto al minimo 
+    //crea un contenitore che occupa tutta la larghezza disponibile e con altezza che dipenderà dal wrapper
+    var container = document.createElement('div');
+    container.style.width = '100%'; 
+    container.style.display = 'flex';
+    container.style.justifyContent = 'flex-start';
+    //crea un wrapper con larghezza del video per inserirvi video, link e spinner
+    var wrappervideolinkspinner = document.createElement('div');
+    wrappervideolinkspinner.style.position = 'relative';
+    wrappervideolinkspinner.style.display = 'inline-block';
+    wrappervideolinkspinner.style.verticalAlign = 'top';
+    //crea il video ridotto al minimo 
     var videoelement = document.createElement('video');
     videoelement.id = 'videoscalabile';
     videoelement.className = 'materialboxed responsive-video scale-transition scale-out';
@@ -140,11 +150,12 @@ function splash4province(e) {
     //crea l'hyperlink di chiusura non visibile e posizionato al centro del blocco
     var linkelement = document.createElement('a');
     linkelement.id = 'chiude';
-    linkelement.href = '#!';
+    linkelement.href = 'javascript:undefined';
     linkelement.className = 'indigo-text text-darken-4';
     linkelement.setAttribute('onclick', 'viasplash4province(event);');
     linkelement.innerText = 'qui puoi chiudere lo zoom';
-    linkelement.style='font-size:5vw; text-decoration:underline;';
+    linkelement.style.fontSize = '5vw';
+    linkelement.style.textDecoration = 'underline';
     linkelement.style.position = 'absolute';
     linkelement.style.top = '50%'; 
     linkelement.style.left = '50%';
@@ -153,34 +164,37 @@ function splash4province(e) {
     linkelement.style.textAlign = 'center'; 
     linkelement.style.display = 'none';
     linkelement.style.zIndex = '10'; 
-    //crea un contenitore (che occupa tutta la larghezza disponibile e con altezza che dipenderà dal video) con il video e l'hyperlink
-    var container = document.createElement('div');
-    container.style.position = 'relative';
-    container.style.display = 'inline-block';
-    container.style.alignItems = 'center';
-    container.style.justifyContent = "center"; 
-    container.style.width = '100%'; 
-    container.style.height = 'auto';
-    //nel contenitore mette uno spinner sopra tutto per ingannare il tempo nell'attesa ...
-    container.innerHTML+=`<div id="attendivideoscalabile" style="position:absolute; top:50%; left:50%; align-content:center; z-index:20; opacity:1; transition:opacity 0.5s ease; will-change:opacity;" class="preloader-wrapper small active">
-                           <div style="border-color:#1A237E;" class="spinner-layer">
-                            <div class="circle-clipper left">
-                             <div style="border-color:#1A237E;" class="circle"></div>
-                            </div>
-                            <div class="gap-patch">
-                             <div style="border-color:#1A237E;" class="circle"></div>
-                            </div>
-                            <div style="border-color:#1A237E;" class="circle-clipper right">
-                             <div class="circle"></div>
-                            </div>
-                           </div>
-                          </div>
-                         `;                                                        
-    container.appendChild(videoelement);
-    container.appendChild(linkelement);
+    //crea uno spinner materialize sopra tutto per ingannare il tempo nell'attesa ...
+    var materializespinner = document.createElement('div');
+    materializespinner.id = 'attendivideoscalabile';
+    materializespinner.className = 'preloader-wrapper small active';
+    materializespinner.style.position = 'absolute';
+    materializespinner.style.top = '50%';
+    materializespinner.style.left = '50%';
+    materializespinner.style.transform = 'translate(-50%, -50%)';
+    materializespinner.style.opacity = '1';
+    materializespinner.style.transition = 'opacity 0.5s ease';
+    materializespinner.style.willChange = 'opacity';
+    materializespinner.style.zIndex = '20';
+    materializespinner.innerHTML = `<div style="border-color:#1A237E;" class="spinner-layer">
+                                     <div class="circle-clipper left">
+                                      <div style="border-color:#1A237E;" class="circle"></div>
+                                     </div>
+                                     <div class="gap-patch">
+                                      <div style="border-color:#1A237E;" class="circle"></div>
+                                     </div>
+                                     <div class="circle-clipper right">
+                                      <div class="circle"></div>
+                                     </div>
+                                    </div>`;
+    //sistema video, link e spinner nel wrapper
+    wrappervideolinkspinner.appendChild(videoelement);
+    wrappervideolinkspinner.appendChild(linkelement);
+    wrappervideolinkspinner.appendChild(materializespinner);
+    //il container contiene solo il wrapper
+    container.appendChild(wrappervideolinkspinner);
     //sostituisce il contenuto della colonna col nuovo contenitore
-    var divelement = document.getElementById('colonna1');
-    divelement.replaceChildren(container);
+    document.getElementById('colonna1').replaceChildren(container);
     //il video ha 98 frame, la proiezione si deve fermare a metà (49)
     const videotargetframe = 49; 
     const videofps = 30;
@@ -219,12 +233,11 @@ function splash4province(e) {
           }
        }
 
-    const spinner = document.getElementById('attendivideoscalabile');
     //imposta la velocità di riproduzione del video
     videoelement.playbackRate = 0.75;
     //imposta l'event listener per mostrare lo spinner se il video è in buffering
     videoelement.addEventListener('waiting',
-                                  () => {spinner.style.opacity = '1';}
+                                  () => {materializespinner.style.opacity = '1';}
                                  );
     //imposta l'event listener per bloccare il video e avvia la riproduzione controllata solo dopo che i dati sono disponibili
     videoelement.addEventListener('loadeddata',
@@ -243,7 +256,7 @@ function splash4province(e) {
                                  );
     //imposta l'event Listener per nascondere lo spinner quando il video può partire senza strappi
     videoelement.addEventListener('canplaythrough',
-                                  () => {spinner.style.opacity = '0';}
+                                  () => {materializespinner.style.opacity = '0';}
                                  );
     //ora avvia il caricamento
     videoelement.load();
@@ -292,8 +305,7 @@ function viasplash4province(e) {
    
 function splashrecensioni(e) {
     //rende visibile il div 
-    const divelement = document.getElementById("splashrecensioni");
-    divelement.style.display = "block";
+    document.getElementById('splashrecensioni').style.display = 'block';
     //inizializza il carousel dentro il div appena reso visibile
     const elem = document.getElementById('carouselrecensioni');
     const instance = M.Carousel.init(elem,
@@ -306,5 +318,5 @@ function splashrecensioni(e) {
    }
    
 function viasplashrecensioni(e) {
-    document.getElementById("splashrecensioni").style="display:none;";
+    document.getElementById('splashrecensioni').style='display:none;';
    }
