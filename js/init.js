@@ -173,7 +173,7 @@ function splash4province(e) {
     materializespinner.style.position = 'absolute';
     materializespinner.style.top = '50%';
     materializespinner.style.left = '50%';
-    materializespinner.style.transform = 'translate(-50%, -50%)';
+    //materializespinner.style.transform = 'translate(-50%, -50%)';
     materializespinner.style.opacity = '1';
     materializespinner.style.transition = 'opacity 0.5s ease';
     materializespinner.style.willChange = 'opacity';
