@@ -173,17 +173,16 @@ function splash4province(e) {
     materializespinner.style.position = 'absolute';
     materializespinner.style.top = '50%';
     materializespinner.style.left = '50%';
-    //materializespinner.style.transform = 'translate(-50%, -50%)';
     materializespinner.style.opacity = '1';
     materializespinner.style.transition = 'opacity 0.5s ease';
     materializespinner.style.willChange = 'opacity';
     materializespinner.style.zIndex = '20';
     materializespinner.innerHTML = `<div style="border-color:#1A237E;" class="spinner-layer">
                                      <div class="circle-clipper left">
-                                      <div style="border-color:#1A237E;" class="circle"></div>
+                                      <div class="circle"></div>
                                      </div>
                                      <div class="gap-patch">
-                                      <div style="border-color:#1A237E;" class="circle"></div>
+                                      <div class="circle"></div>
                                      </div>
                                      <div class="circle-clipper right">
                                       <div class="circle"></div>
