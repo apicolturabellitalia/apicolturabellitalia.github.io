@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded',
                              }
                          );
 
-//funzione generalizzata per sostituire il testo di un elemento mantenendo i link
+//funzione generalizzata per sostituire il testo di un elemento esclusi i link
 //usa un array di nodi da sostituire esterni ai link (sostituzioni), meglio mettere un elemento dell'array per ogni nodo diverso che si vuole cambiare, senza HTML entity o HTML special character
 function rimpiazzaTestoConLinks(element, sostituzioni) {
     //itera attraverso i nodi dell'elemento
@@ -206,7 +206,7 @@ function splash4province(e) {
 
     //funzione handler per l'evento timeupdate che controlla la riproduzione
     function checkVideoTime() {
-        // Controlla se il tempo corrente ha superato o raggiunto il target
+        //controlla se il tempo corrente ha superato o raggiunto il target
         if (videoelement.currentTime >= videostoptime) {
            videoelement.pause();
            //per sicurezza: aggiunge precisione
@@ -223,15 +223,15 @@ function splash4province(e) {
            var spanelement = document.getElementById('quattroprovince');
            quattroprovinceclone = spanelement.cloneNode(true);
            rimpiazzaTestoConLinks(spanelement,
-                                  {', o ': ' (mentre ',
+                                  {', o ': ' (oppure ',
                                    '.': ').'           
                                   }
                                  );
            //sistema l'hyperlink da cui è partito per poter tornere indietro (e.currentTarget non va bene perché siamo dentro timeupdate)
            var thislinkelement = document.getElementById('splash');
            thislinkelement.setAttribute('onclick', 'viasplash4province(event);');
-           thislinkelement.innerHTML = 'qui puoi chiudere lo zoom';
-           //rimuove l'event listener per non eseguirlo più
+           thislinkelement.innerHTML = 'qui puoi chiudere lo zoom tornado ai Contatti';
+           //in uscita rimuove l'event listener per non eseguirlo più
            videoelement.removeEventListener('timeupdate',
                                             checkVideoTime
                                            );
@@ -280,9 +280,10 @@ function viasplash4province(e) {
                                       videoelement.classList.replace('scale-in','scale-out');
                                       //risistema la colonna di sinistra
                                       document.getElementById('colonna1').replaceWith(colonna1clone);
-                                      //risistema lo span
+                                      //risistema lo span e poi sposta la finestra di conseguenza
                                       document.getElementById('quattroprovince').replaceWith(quattroprovinceclone);
-                                      //rimuove l'event listener per non eseguirlo più
+                                      document.getElementById('Trovaci').scrollIntoView({behavior: 'smooth'});
+                                      //in uscita rimuove l'event listener per non eseguirlo più
                                       videoelement.removeEventListener('ended');                                              
                                      },
                                   {capture: true, once: true}
