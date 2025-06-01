@@ -230,7 +230,8 @@ function splash4province(e) {
            //sistema l'hyperlink da cui è partito per poter tornere indietro (e.currentTarget non va bene perché siamo dentro timeupdate)
            var thislinkelement = document.getElementById('splash');
            thislinkelement.setAttribute('onclick', 'viasplash4province(event);');
-           thislinkelement.innerHTML = 'qui puoi chiudere lo zoom tornado ai Contatti';
+           thislinkelement.innerHTML = 'qui puoi chiudere lo zoom tornando ai Contatti';
+           thislinkelement.style.textDecoration = 'underline';
            //in uscita rimuove l'event listener per non eseguirlo più
            videoelement.removeEventListener('timeupdate',
                                             checkVideoTime
